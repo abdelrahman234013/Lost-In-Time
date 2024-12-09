@@ -11,7 +11,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 
@@ -64,4 +64,7 @@ TagManager:
     locked: 0
   - name: Jack
     uniqueID: 1776685843
+    locked: 0
+  - name: acid
+    uniqueID: 1242786773
     locked: 0
