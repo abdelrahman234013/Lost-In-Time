@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - enemy
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -40,4 +43,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Layer 1
+    uniqueID: 3932737179
+    locked: 0
+  - name: Layer 2
+    uniqueID: 2572254295
+    locked: 0
+  - name: Layer 3
+    uniqueID: 1330313057
+    locked: 0
+  - name: Layer 4
+    uniqueID: 319720755
+    locked: 0
+  - name: Layer 5
+    uniqueID: 3192406137
+    locked: 0
+  - name: Jack
+    uniqueID: 3202507847
+    locked: 0
+  - name: Ground
+    uniqueID: 1301851749
     locked: 0
