@@ -17,7 +17,7 @@ public class PlayerStats : MonoBehaviour
     // public TextMeshProUGUI ScoreUI;
     // public Image healthBar;
 
-   
+
 
 
     // Start is called before the first frame update
@@ -84,4 +84,10 @@ public class PlayerStats : MonoBehaviour
         this.isImmune = true;
         this.immuneTime = 0f;
     }
+
+    public void CollectCoin(int coinValue)
+    {
+        this.coinsCollected = this.coinsCollected + coinValue;
+    }
 }
+
