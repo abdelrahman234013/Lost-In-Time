@@ -17,56 +17,66 @@ public class BirdHealth : MonoBehaviour
     }
 
     void Update()
+{
+    // If health is 0 or below, trigger the Dead animation
+    if (health <= 0 && !isHurt)
     {
-        // Health conditions and animation triggers
-        if (health <= 0 && !isHurt) // Health reaches 0 and Hurt isn't active
-        {
-            Debug.Log("Health is 0 or below: Triggering Dead animation");
-            StartCoroutine(TriggerDeadWithDelay());
-        }
-        else if (health < 50 && health > 0 && !isHurt) // Health below 50 but above 0
-        {
-            // Trigger hurt only if it hasn't been triggered already
-            Debug.Log("Health is below 50: Triggering Hurt animation");
-            StartCoroutine(TriggerHurtWithDelay());
-        }
-        else if (health > 50) // Health above 50, keep flying
-        {
-            birdAnimator.StartFlying();
-        }
-
-        // Debugging: Key press to test Hurt and Dead states
-        if (Input.GetKeyDown(KeyCode.H)) // Press 'H' to test Hurt
-        {
-            Debug.Log("H key pressed: Triggering Hurt animation");
-            birdAnimator.TakeDamage();
-        }
-
-        if (Input.GetKeyDown(KeyCode.D)) // Press 'D' to test Dead
-        {
-            Debug.Log("D key pressed: Triggering Dead animation");
-            StartCoroutine(TriggerDeadWithDelay()); // Trigger Dead with a delay
-        }
+        Debug.Log("Health is 0 or below: Triggering Dead animation");
+        StartCoroutine(TriggerDeadWithDelay());  // Call Dead with delay
+    }
+    // If health is below 50, but the bird isn't already hurt, then trigger Hurt animation
+    // This condition will be checked only when actual damage is taken
+    else if (health < 50 && !isHurt)  // Ensure hurt animation is triggered only if the bird is not already hurt
+    {
+        // We will no longer trigger Hurt animation here automatically
+        // Just a debug log to track the health, you could keep or remove it
+        Debug.Log("Health is below 50: Waiting for actual damage to trigger Hurt animation");
+    }
+    // If health is above 50, make sure the bird is flying
+    else if (health > 50)
+    {
+        birdAnimator.StartFlying();
     }
 
-    public void TakeDamage(int damage)
+    // Test Hurt animation with H key press
+    if (Input.GetKeyDown(KeyCode.H)) // Press 'H' to manually trigger Hurt
     {
-        health -= damage;
-        // Trigger Hurt animation only when the health drops below a threshold
-        if (health < 50 && !isHurt)
-        {
-            StartCoroutine(TriggerHurtWithDelay());
-        }
+        Debug.Log("H key pressed: Triggering Hurt animation");
+        birdAnimator.TakeDamage();  // Trigger the Hurt animation manually
     }
 
-    public void Heal(int amount)
+    // Test Dead animation with D key press
+    if (Input.GetKeyDown(KeyCode.D)) // Press 'D' to manually trigger Dead animation
     {
-        health += amount;
-        if (health > 50)
-        {
-            birdAnimator.StartFlying(); // Go back to flying if health is above 50
-        }
+        Debug.Log("D key pressed: Triggering Dead animation");
+        birdAnimator.Die();
     }
+}
+
+public void TakeDamage(int damage)
+{
+    health -= damage;  // Decrease health by damage amount
+    // Check if health is still above 0, and only trigger hurt animation if health < 50
+    if (health > 0 && health < 50)
+    {
+        birdAnimator.TakeDamage();  // Trigger the Hurt animation
+    }
+    else if (health <= 0)
+    {
+        // Trigger dead animation if health is 0 or below
+        birdAnimator.Die();
+    }
+}
+
+public void Heal(int amount)
+{
+    health += amount;  // Increase health by heal amount
+    if (health > 50)
+    {
+        birdAnimator.StartFlying();  // Start flying animation when health is above 50
+    }
+}
+
 
     // Coroutine to handle delay before the Hurt animation
     private IEnumerator TriggerHurtWithDelay()
