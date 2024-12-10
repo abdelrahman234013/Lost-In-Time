@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Box
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -71,4 +72,10 @@ TagManager:
     locked: 0
   - name: Box
     uniqueID: 175498755
+    locked: 0
+  - name: Smoke
+    uniqueID: 1217535433
+    locked: 0
+  - name: New Layer 12
+    uniqueID: 2538558689
     locked: 0

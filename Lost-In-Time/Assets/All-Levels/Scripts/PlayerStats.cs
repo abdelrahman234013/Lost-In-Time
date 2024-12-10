@@ -12,6 +12,8 @@ public class PlayerStats : MonoBehaviour
     public bool isImmune = false;
     public float immuneTime = 0f;
     public float immuneDuration = 1.5f;
+    public bool hasCard = false;
+    public bool hasCapsule = false;
     // public TextMeshProUGUI ScoreUI;
     // public Image healthBar;
 
@@ -64,7 +66,7 @@ public class PlayerStats : MonoBehaviour
 
             }
             else{
-                // FindObjectOfType<LevelManager>().RespawnPlayer();
+                FindObjectOfType<LevelManager>().RespawnPlayer();
             }
 
             Debug.Log("Player Health: " + this.health.ToString());
