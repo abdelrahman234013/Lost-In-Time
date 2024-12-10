@@ -3,13 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
   tags: []
-=======
-  tags:
-  - Box
-  - enemy
->>>>>>> c4ce0d668577294beb61245f51a4c70b205ffe6c
   layers:
   - Default
   - TransparentFX
@@ -85,4 +79,10 @@ TagManager:
   - name: New Layer 12
     uniqueID: 2538558689
     locked: 0
+<<<<<<< Updated upstream
 >>>>>>> c4ce0d668577294beb61245f51a4c70b205ffe6c
+=======
+  - name: Trap
+    uniqueID: 1462052947
+    locked: 0
+>>>>>>> Stashed changes
