@@ -45,6 +45,7 @@ TagManager:
     uniqueID: 0
     locked: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   - name: Layer 1
     uniqueID: 3932737179
     locked: 0
@@ -68,6 +69,8 @@ TagManager:
     locked: 0
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> parent of dc37282 (ttt)
 =======
   - name: background1
     uniqueID: 2925621519
@@ -112,4 +115,7 @@ TagManager:
     uniqueID: 1462052947
     locked: 0
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)

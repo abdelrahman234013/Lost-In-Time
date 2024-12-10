@@ -199,6 +199,9 @@ SpriteRenderer:
 =======
   m_SortingLayerID: 1403167507
   m_SortingLayer: 5
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 26161c6fe4da44b40988b193514aac37, type: 3}
@@ -221,7 +224,11 @@ Transform:
   m_GameObject: {fileID: 237897182}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalPosition: {x: -23.72, y: -46.9, z: 0}
+=======
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+>>>>>>> parent of dc37282 (ttt)
 =======
   m_LocalPosition: {x: 0, y: 0, z: 0}
 >>>>>>> parent of dc37282 (ttt)
@@ -314,6 +321,9 @@ SpriteRenderer:
 =======
   m_SortingLayerID: 1486352789
   m_SortingLayer: 4
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fad9d5f95b5a70940a00b3de604055a7, type: 3}
@@ -386,6 +396,9 @@ SpriteRenderer:
   m_SortingLayerID: -1722713001
 =======
   m_SortingLayerID: -1186619605
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingLayer: 2
   m_SortingOrder: 0
@@ -628,6 +641,9 @@ SpriteRenderer:
 =======
   m_SortingLayerID: 1403167507
   m_SortingLayer: 5
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 26161c6fe4da44b40988b193514aac37, type: 3}
@@ -715,6 +731,9 @@ SpriteRenderer:
   m_SortingLayerID: -362230117
 =======
   m_SortingLayerID: 1699817509
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingLayer: 1
   m_SortingOrder: 0
@@ -788,6 +807,9 @@ SpriteRenderer:
   m_SortingLayerID: -1722713001
 =======
   m_SortingLayerID: -1186619605
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingLayer: 2
   m_SortingOrder: 0
@@ -891,6 +913,9 @@ SpriteRenderer:
   m_SortingLayerID: -1722713001
 =======
   m_SortingLayerID: -1186619605
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingLayer: 2
   m_SortingOrder: 0
@@ -914,7 +939,11 @@ Transform:
   m_GameObject: {fileID: 573873050}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalPosition: {x: -23.72, y: -34.16, z: 0}
+=======
+  m_LocalPosition: {x: 0, y: 11, z: 0}
+>>>>>>> parent of dc37282 (ttt)
 =======
   m_LocalPosition: {x: 0, y: 11, z: 0}
 >>>>>>> parent of dc37282 (ttt)
@@ -1000,6 +1029,9 @@ SpriteRenderer:
   m_SortingLayerID: 1330313057
 =======
   m_SortingLayerID: -1944403853
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingLayer: 3
   m_SortingOrder: 0
@@ -1795,6 +1827,9 @@ SpriteRenderer:
   m_SortingLayerID: -362230117
 =======
   m_SortingLayerID: 1699817509
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingLayer: 1
   m_SortingOrder: 0
@@ -1818,7 +1853,11 @@ Transform:
   m_GameObject: {fileID: 1556769527}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalPosition: {x: -23.72, y: -36.16, z: 0}
+=======
+  m_LocalPosition: {x: 0, y: 9, z: 0}
+>>>>>>> parent of dc37282 (ttt)
 =======
   m_LocalPosition: {x: 0, y: 9, z: 0}
 >>>>>>> parent of dc37282 (ttt)
@@ -1906,6 +1945,9 @@ SpriteRenderer:
 =======
   m_SortingLayerID: 1403167507
   m_SortingLayer: 5
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 26161c6fe4da44b40988b193514aac37, type: 3}
@@ -2065,6 +2107,9 @@ SpriteRenderer:
   m_SortingLayerID: -362230117
 =======
   m_SortingLayerID: 1699817509
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingLayer: 1
   m_SortingOrder: 0
@@ -2155,6 +2200,9 @@ SpriteRenderer:
 =======
   m_SortingLayerID: 1486352789
   m_SortingLayer: 4
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fad9d5f95b5a70940a00b3de604055a7, type: 3}
@@ -2177,7 +2225,11 @@ Transform:
   m_GameObject: {fileID: 1956042619}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalPosition: {x: -23.72, y: -51.9, z: 0}
+=======
+  m_LocalPosition: {x: 0, y: 1.5999985, z: 0}
+>>>>>>> parent of dc37282 (ttt)
 =======
   m_LocalPosition: {x: 0, y: 1.5999985, z: 0}
 >>>>>>> parent of dc37282 (ttt)
@@ -2265,6 +2317,9 @@ SpriteRenderer:
 =======
   m_SortingLayerID: 1486352789
   m_SortingLayer: 4
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fad9d5f95b5a70940a00b3de604055a7, type: 3}
@@ -2397,6 +2452,9 @@ SpriteRenderer:
   m_SortingLayerID: 1330313057
 =======
   m_SortingLayerID: -1944403853
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingLayer: 3
   m_SortingOrder: 0
@@ -2502,6 +2560,9 @@ SpriteRenderer:
   m_SortingLayerID: 1330313057
 =======
   m_SortingLayerID: -1944403853
+<<<<<<< HEAD
+>>>>>>> parent of dc37282 (ttt)
+=======
 >>>>>>> parent of dc37282 (ttt)
   m_SortingLayer: 3
   m_SortingOrder: 0
