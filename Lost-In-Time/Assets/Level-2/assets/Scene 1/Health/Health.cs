@@ -18,6 +18,7 @@ public class HealthScript : MonoBehaviour
 
   public void TakeDamage(float _damage)
     {
+         Debug.Log("Damage taken: " + _damage); 
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
         if (currentHealth > 0)
