@@ -12,11 +12,11 @@ public class PlayerStats : MonoBehaviour
     public bool isImmune = false;
     public float immuneTime = 0f;
     public float immuneDuration = 1.5f;
-    public int coinsCollected = 0;
+    public bool hasCard = false;
+    public bool hasCapsule = false;
+    private int coinsCollected = 0;
     // public TextMeshProUGUI ScoreUI;
     // public Image healthBar;
-
-
 
 
     // Start is called before the first frame update
@@ -64,17 +64,12 @@ public class PlayerStats : MonoBehaviour
                 Destroy(this.gameObject);
 
             }
-            else{
-                // FindObjectOfType<LevelManager>().RespawnPlayer();
-            }
 
             Debug.Log("Player Health: " + this.health.ToString());
             // Debug.Log("Player Lives: " + this.lives.ToString());
         }
 
         PlayHitReaction();
-
-        this.health = health - damage;
         // healthBar.fillAmount = this.health/3f;
         
     }

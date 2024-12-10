@@ -9,6 +9,7 @@ public class JellyFishController : MonoBehaviour
     public Transform endPoint;    // End point boundary
     public float speed = 2f;      // Speed of the jellyfish's movement
     public Animator animator;     // Reference to the Animator component
+    public int damage = 1;
 
     private bool movingUp = true; // Direction of movement: true = up, false = down
     private float fixedX;         // Fixed x-coordinate of the jellyfish
@@ -68,6 +69,18 @@ public class JellyFishController : MonoBehaviour
         {
             // Stop moving up and immediately start moving down
             movingUp = false;
+            PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+
+            if (playerStats != null)
+        {
+            Debug.Log($"Player taking {damage} damage.");
+            playerStats.TakeDamage(damage);
+        }
+        else
+        {
+            Debug.LogError("PlayerStats component not found!");
+        }
+
         }
     }
 }
