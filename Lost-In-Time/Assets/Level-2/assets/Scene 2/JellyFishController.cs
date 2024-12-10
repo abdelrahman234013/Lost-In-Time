@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class JellyFishController : MonoBehaviour
 {
-    public Transform startPoint;  // Start point of the movement
-    public Transform endPoint;    // End point of the movement
+    public Transform startPoint;  // Start point boundary
+    public Transform middlePoint; // Middle point to determine water boundary
+    public Transform endPoint;    // End point boundary
     public float speed = 2f;      // Speed of the jellyfish's movement
     public Animator animator;     // Reference to the Animator component
 
@@ -14,16 +15,14 @@ public class JellyFishController : MonoBehaviour
 
     void Start()
     {
-        // Ensure the jellyfish starts at the starting point
-        transform.position = startPoint.position;
-        // Store the fixed x-coordinate
-        fixedX = startPoint.position.x;
+        // Store the fixed x-coordinate based on the initial position
+        fixedX = transform.position.x;
     }
 
     void Update()
     {
         MoveJellyfish();  // Handle movement
-        UpdateAnimation(); // Update animation based on y-position
+        UpdateAnimation(); // Update animation based on position
     }
 
     private void MoveJellyfish()
@@ -48,21 +47,21 @@ public class JellyFishController : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        // Check if the jellyfish is above y = -5
-        bool isAboveWaterLine = transform.position.y > -7;
+        // Check if the jellyfish is outside the water (between middle and end point)
+        bool isOutsideWater = transform.position.y >= middlePoint.position.y && transform.position.y <= endPoint.position.y;
 
         // Update animation based on the position
-            if (isAboveWaterLine)
-            {
-                animator.SetBool("IsInWater", false);
-            }
-            else
-            {
-                animator.SetBool("IsInWater", true);
-            }
+        if (isOutsideWater)
+        {
+            animator.SetBool("IsInWater", false); // Outside water
+        }
+        else
+        {
+            animator.SetBool("IsInWater", true); // Inside water
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D  collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the jellyfish collided with the Player
         if (collision.CompareTag("Player"))
