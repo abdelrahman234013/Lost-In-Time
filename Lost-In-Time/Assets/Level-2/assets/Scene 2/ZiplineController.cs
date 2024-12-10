@@ -33,47 +33,60 @@ public class ZiplineController : MonoBehaviour
     }
 
     void Update()
+{
+    // Allow the player to start the zipline by pressing 'E' when nearby
+    if (isPlayerNearby && !isOnZipline && Input.GetKeyDown(KeyCode.E))
     {
-        // Allow the player to start the zipline by pressing 'E' when nearby
-        if (isPlayerNearby && !isOnZipline && Input.GetKeyDown(KeyCode.E))
-        {
-            StartZipline(player);
-        }
-
-        if (isOnZipline)
-        {
-            // Hide the "E" image while the player is on the zipline
-            if (ziplineIndicator != null)
-            {
-                ziplineIndicator.gameObject.SetActive(false);
-            }
-
-            float horizontalInput = Input.GetAxis("Horizontal"); 
-            float movementDirection = Mathf.Sign(horizontalInput); 
-
-            Vector3 movement = ziplineDirection * movementDirection * speed * Time.deltaTime;
-            Vector3 newPosition = player.position + movement;
-
-            if (Vector3.Dot(newPosition - startPoint.position, ziplineDirection) >= 0 &&
-                Vector3.Dot(newPosition - endPoint.position, ziplineDirection) <= 0)
-            {
-                // Update the player's position on the zipline
-                player.position = newPosition;
-
-                // Move the handle to follow the player's position
-                if (handle != null)
-                {
-                    handle.position = new Vector3(player.position.x, player.position.y + hangOffset, player.position.z);
-                }
-            }
-            else
-            {
-                // If the player reaches the end of the zipline, exit
-                StopZipline();
-            }
-        }
+        StartZipline(player);
     }
 
+    if (isOnZipline)
+    {
+        // Hide the "E" image while the player is on the zipline
+        if (ziplineIndicator != null)
+        {
+            ziplineIndicator.gameObject.SetActive(false);
+        }
+
+        float horizontalInput = Input.GetAxis("Horizontal"); 
+        float movementDirection = Mathf.Sign(horizontalInput); 
+
+        Vector3 movement = ziplineDirection * movementDirection * speed * Time.deltaTime;
+        Vector3 newPosition = player.position + movement;
+
+        // Clamp the player's position between the start and end points
+        float startToPlayerDot = Vector3.Dot(newPosition - startPoint.position, ziplineDirection);
+        float endToPlayerDot = Vector3.Dot(newPosition - endPoint.position, ziplineDirection);
+
+        if (startToPlayerDot >= 0 && endToPlayerDot <= 0)
+        {
+            // Update the player's position on the zipline
+            player.position = newPosition;
+
+            // Move the handle to follow the player's position
+            if (handle != null)
+            {
+                handle.position = new Vector3(player.position.x, player.position.y + hangOffset, player.position.z);
+            }
+        }
+        else
+        {
+            // Clamp the player's position to stay within the zipline boundaries
+            Vector3 clampedPosition = (startToPlayerDot < 0) ? startPoint.position : endPoint.position;
+            clampedPosition.y -= hangOffset; // Adjust for hangOffset
+            player.position = clampedPosition;
+
+            // Snap the handle to the clamped position
+            if (handle != null)
+            {
+                handle.position = new Vector3(clampedPosition.x, clampedPosition.y + hangOffset, clampedPosition.z);
+            }
+
+            // If the player reaches the boundary, exit the zipline
+            StopZipline();
+        }
+    }
+}
     public void StartZipline(Transform playerTransform)
     {
         player = playerTransform;
