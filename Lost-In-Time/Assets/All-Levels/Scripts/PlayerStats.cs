@@ -19,8 +19,6 @@ public class PlayerStats : MonoBehaviour
     // public Image healthBar;
 
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -66,17 +64,12 @@ public class PlayerStats : MonoBehaviour
                 Destroy(this.gameObject);
 
             }
-            else{
-                FindObjectOfType<LevelManager>().RespawnPlayer();
-            }
 
             Debug.Log("Player Health: " + this.health.ToString());
             // Debug.Log("Player Lives: " + this.lives.ToString());
         }
 
         PlayHitReaction();
-
-        this.health = health - damage;
         // healthBar.fillAmount = this.health/3f;
         
     }
