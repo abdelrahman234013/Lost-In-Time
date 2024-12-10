@@ -14,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     public float immuneDuration = 1.5f;
     public bool hasCard = false;
     public bool hasCapsule = false;
+    private int coinsCollected = 0;
     // public TextMeshProUGUI ScoreUI;
     // public Image healthBar;
 
