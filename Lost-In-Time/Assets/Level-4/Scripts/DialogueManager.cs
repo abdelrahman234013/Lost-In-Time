@@ -13,7 +13,7 @@ public class DialogueManager : MonoBehaviour
     public Button continueButton;  // The button to continue dialogue
 
     // Dialogue Data
-    public string characterNameText = "Jack";  // Character's name
+    public string characterNameText = "Lovely Bird";  // Character's name
     public Sprite characterSprite;  // Jack's character sprite (assign in Inspector)
     public List<string> dialogueLines;  // List of dialogue lines to be displayed
 
@@ -67,6 +67,7 @@ public class DialogueManager : MonoBehaviour
     // Display the next line of dialogue
     public void DisplayNextLine()
     {
+          Debug.Log("Button clicked! Displaying next line..."); 
         // Check if there are no more lines
         if (sentences.Count == 0)
         {
