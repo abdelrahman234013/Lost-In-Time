@@ -5,8 +5,8 @@ using UnityEngine;
 public class BckgroundMovement : MonoBehaviour
 {
 
-    private float startPosX, lengthX, lengthY;
-    private float startPosY;
+    private float startPosX, lengthX;
+    private float startPosY, lengthY;
     public GameObject cam;
     public float parallaxEffect;
 
@@ -27,7 +27,7 @@ public class BckgroundMovement : MonoBehaviour
         float movementX = cam.transform.position.x * (1 - parallaxEffect);
         float movementY = cam.transform.position.y * (1 - parallaxEffect);
 
-        transform.position = new Vector3(startPosX + distanceX, startPosY + distanceY, transform.position.z);
+        transform.position = new Vector3(startPosX + distanceX, transform.position.y, transform.position.z);
     
     if (movementX > startPosX + lengthX )
         {
@@ -39,13 +39,13 @@ public class BckgroundMovement : MonoBehaviour
         } 
 
          if (movementY > startPosY + lengthY )
-        {
+     {
             startPosY += lengthY;
-
+   
         } else if(movementY < startPosY - lengthY)
-        {
-            startPosY -= lengthY;
-        } 
+       {
+           startPosY -= lengthY;
+    } 
     
     }
 }
