@@ -82,10 +82,10 @@ public class GameMangerPuzzle : MonoBehaviour
                     if (pieces[i] == hit.transform)
                     {
                         // Check each direction to see if a valid move
-                        if (SwapIfValid(i, -size, i % size == 0 ? -1 : 0)) break;
-                        if (SwapIfValid(i, +size, i % size == size - 1 ? size : 0)) break;
-                        if (SwapIfValid(i, -1, 0)) break;
-                        if (SwapIfValid(i, +1, size - 1)) break;
+                        if (SwapIfValid(i, -size, -1)) break; // Up
+                        if (SwapIfValid(i, +size, -1)) break; // Down
+                        if (SwapIfValid(i, -1, i % size == 0 ? -1 : 0)) break; // Left
+                        if (SwapIfValid(i, +1, (i + 1) % size == 0 ? -1 : 0)) break; // Right
                     }
                 }
             }
@@ -97,12 +97,15 @@ public class GameMangerPuzzle : MonoBehaviour
         int targetIndex = i + offset;
         if (targetIndex >= 0 && targetIndex < pieces.Count)
         {
-            if ((i % size) != colCheck && targetIndex == emptyLocation)
+            if (colCheck == -1 || (i % size) + offset % size == targetIndex % size)
             {
-                (pieces[i], pieces[targetIndex]) = (pieces[targetIndex], pieces[i]);
-                (pieces[i].localPosition, pieces[targetIndex].localPosition) = (pieces[targetIndex].localPosition, pieces[i].localPosition);
-                emptyLocation = i;
-                return true;
+                if (targetIndex == emptyLocation)
+                {
+                    (pieces[i], pieces[targetIndex]) = (pieces[targetIndex], pieces[i]);
+                    (pieces[i].localPosition, pieces[targetIndex].localPosition) = (pieces[targetIndex].localPosition, pieces[i].localPosition);
+                    emptyLocation = i;
+                    return true;
+                }
             }
         }
         return false;
@@ -138,10 +141,10 @@ public class GameMangerPuzzle : MonoBehaviour
 
             if (rnd == last) continue;
 
-            if (SwapIfValid(rnd, -size, rnd % size == 0 ? -1 : 0) ||
-                SwapIfValid(rnd, +size, rnd % size == size - 1 ? size : 0) ||
-                SwapIfValid(rnd, -1, 0) ||
-                SwapIfValid(rnd, +1, size - 1))
+            if (SwapIfValid(rnd, -size, -1) ||
+                SwapIfValid(rnd, +size, -1) ||
+                SwapIfValid(rnd, -1, rnd % size == 0 ? -1 : 0) ||
+                SwapIfValid(rnd, +1, (rnd + 1) % size == 0 ? -1 : 0))
             {
                 count++;
                 last = rnd;
