@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CollectStones : MonoBehaviour
 {
- 
-    public bool isCollected = false;
+    public bool isCollected = false; // Keeps track of whether the stone has been collected or not
 
     // When the player touches the stone, it gets collected.
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,7 +23,8 @@ public class CollectStones : MonoBehaviour
             isCollected = true;
             // Notify the player that they have collected a stone
             player.GetComponent<CharcterScript>().CollectStone();
-            Destroy(gameObject); // Destroy the stone
+            Destroy(gameObject); // Destroy the stone object, but keep playing
         }
     }
 }
+

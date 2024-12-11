@@ -7,7 +7,7 @@ public class BirdThrow : MonoBehaviour
     public GameObject stonePrefab;    // Stone prefab to instantiate
     public float throwForce = 10f;    // Force to apply when throwing the stone
     public Transform throwPoint;      // Point from where the stone will be thrown (in front of the bird)
-    
+
     private Rigidbody rb;             // Bird's Rigidbody to check movement
     private int stonesThrown = 0;     // Keep track of how many stones the bird has thrown
     public int maxStones = 3;         // Max number of stones the bird can throw before needing to "reload"
@@ -19,14 +19,25 @@ public class BirdThrow : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();  // Get the bird's Rigidbody component
+        // Get the bird's Rigidbody component, checking if it exists
+        rb = GetComponent<Rigidbody>();
+
+        // If Rigidbody is not found, log a warning message (optional)
+        if (rb == null)
+        {
+            Debug.LogWarning("Rigidbody component missing on " + gameObject.name);
+        }
+
         StartCoroutine(ThrowStonePeriodically());  // Start throwing stones periodically
     }
 
     void Update()
     {
         // Check if the bird is moving (velocity magnitude greater than 0)
-        isMoving = rb.velocity.magnitude > 0.1f;
+        if (rb != null) // Ensure Rigidbody exists before accessing it
+        {
+            isMoving = rb.velocity.magnitude > 0.1f;
+        }
 
         // Only allow throwing if the bird is moving and hasn't reached the max stone count
         if (isMoving && stonesThrown < maxStones)
@@ -55,7 +66,7 @@ public class BirdThrow : MonoBehaviour
     }
 
     // Method to throw a stone
-    public void ThrowStone()  // Make this method public
+    public void ThrowStone()
     {
         // Instantiate the stone at the throw point position with no rotation
         GameObject stone = Instantiate(stonePrefab, throwPoint.position, Quaternion.identity);
@@ -63,18 +74,22 @@ public class BirdThrow : MonoBehaviour
         // Get the Rigidbody component of the stone to apply force
         Rigidbody rbStone = stone.GetComponent<Rigidbody>();
 
-        // Apply a forward force to the stone (toward where the bird is facing)
-        Vector3 throwDirection = transform.forward;  // Bird's forward direction
-        rbStone.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+        if (rbStone != null) // Ensure the stone has a Rigidbody before applying force
+        {
+            // Apply a forward force to the stone (toward where the bird is facing)
+            Vector3 throwDirection = transform.forward;  // Bird's forward direction
+            rbStone.AddForce(throwDirection * throwForce, ForceMode.Impulse);
 
-        // Optionally, add a small upward force to give the stone an arc-like motion
-        rbStone.AddForce(Vector3.up * 2f, ForceMode.Impulse);
+            // Optionally, add a small upward force to give the stone an arc-like motion
+            rbStone.AddForce(Vector3.up * 2f, ForceMode.Impulse);
+        }
+        else
+        {
+            Debug.LogWarning("The stone does not have a Rigidbody attached!");
+        }
 
         // Increment the number of stones thrown
         stonesThrown++;
-
-        // Print the current number of stones thrown (for debugging purposes)
-        Debug.Log("Stones thrown: " + stonesThrown);
 
         // Optionally, destroy the stone after 5 seconds to clean up the scene
         Destroy(stone, 5f);  // Destroy the stone after 5 seconds
