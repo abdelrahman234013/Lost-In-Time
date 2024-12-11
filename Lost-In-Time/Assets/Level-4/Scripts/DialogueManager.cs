@@ -6,31 +6,27 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    // UI Elements
-    public Image characterIcon;
-    public TextMeshProUGUI characterName;
-    public TextMeshProUGUI dialogueArea;
-    public Button continueButton;
+    
+    public Image characterIcon;             
+    public TextMeshProUGUI characterName;   
+    public TextMeshProUGUI dialogueArea;     
+    public Button continueButton;            
+    public GameObject dialoguePanel;         
 
-    // Dialogue Data
-    public string characterNameText = "Jack";
-    public Sprite characterSprite;
-    public List<string> dialogueLines;
+   
+    public List<string> dialogueLines;       
 
-    // Internal variables
-    private Queue<string> sentences;
-
-    public float typingSpeed = 0.05f;
-
+   
+    private Queue<string> sentences;        
+    public float typingSpeed = 0.05f;       
     private void Start()
     {
         sentences = new Queue<string>();
 
-        characterIcon.gameObject.SetActive(false);
-        characterName.gameObject.SetActive(false);
-        dialogueArea.gameObject.SetActive(false);
-        continueButton.gameObject.SetActive(false);
+        
+        dialoguePanel.SetActive(false);
 
+       
         continueButton.onClick.AddListener(DisplayNextLine);
 
         StartDialogue();
@@ -38,45 +34,34 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue()
     {
-        characterName.text = characterNameText;
-        characterIcon.sprite = characterSprite;
+        
+        dialoguePanel.SetActive(true);
 
-        characterIcon.gameObject.SetActive(true);
-        characterName.gameObject.SetActive(true);
-        dialogueArea.gameObject.SetActive(true);
-        continueButton.gameObject.SetActive(true);
-
+       
         sentences.Clear();
-
         foreach (string line in dialogueLines)
         {
             sentences.Enqueue(line);
         }
 
+       
         DisplayNextLine();
     }
 
     public void DisplayNextLine()
-{
-    if (sentences.Count == 0)
     {
-        EndDialogue();
-        return;
+        if (sentences.Count == 0)
+        {
+            EndDialogue(); 
+            return;
+        }
+
+        string currentSentence = sentences.Dequeue();
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(currentSentence));
     }
 
-    string currentSentence = sentences.Dequeue();
-    StopAllCoroutines();
-    StartCoroutine(TypeSentence(currentSentence));
-}
-
-public void ContinueButtonClicked()
-{
-    DisplayNextLine();  // Calls the DisplayNextLine method
-}
-
-
-
-    // Type the sentence letter by letter
+    
     IEnumerator TypeSentence(string sentence)
     {
         dialogueArea.text = "";
@@ -85,13 +70,28 @@ public void ContinueButtonClicked()
             dialogueArea.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+
+        
+        if (sentences.Count == 0)
+        {
+            
+            EndDialogue();
+        }
     }
 
+   
     void EndDialogue()
     {
-        characterIcon.gameObject.SetActive(false);
-        characterName.gameObject.SetActive(false);
-        dialogueArea.gameObject.SetActive(false);
+        
+        dialoguePanel.SetActive(false);
+
+        
         continueButton.gameObject.SetActive(false);
+
+      
+        characterIcon.gameObject.SetActive(false);
+        characterName.text = "";                  
+        characterIcon.sprite = null;               
+        dialogueArea.text = "";                   
     }
 }
