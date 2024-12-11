@@ -530,11 +530,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6121620412780973262, guid: 97d31be3201361e4ba12ec67f80bed8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.9
+      value: -7.3
       objectReference: {fileID: 0}
     - target: {fileID: 6121620412780973262, guid: 97d31be3201361e4ba12ec67f80bed8a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.3
+      value: -4.6
       objectReference: {fileID: 0}
     - target: {fileID: 6121620412780973262, guid: 97d31be3201361e4ba12ec67f80bed8a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -591,6 +591,7 @@ GameObject:
   - component: {fileID: 1960570896}
   - component: {fileID: 1960570895}
   - component: {fileID: 1960570898}
+  - component: {fileID: 1960570899}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -697,6 +698,24 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1960570899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960570894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d3911011966724bb5b948a76d83e0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  CameraSpeed: 3
+  MinX: -10
+  MaxX: 100
+  MinY: -10
+  MaxY: 100
 --- !u!212 &8437536192287789289
 SpriteRenderer:
   m_ObjectHideFlags: 0
