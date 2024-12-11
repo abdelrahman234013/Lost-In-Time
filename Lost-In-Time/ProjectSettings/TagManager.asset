@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Box
   - enemy
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -60,6 +61,18 @@ TagManager:
     locked: 0
   - name: background6
     uniqueID: 3248327589
+    locked: 0
+  - name: background7
+    uniqueID: 1236657393
+    locked: 0
+  - name: background8
+    uniqueID: 2965749815
+    locked: 0
+  - name: background9
+    uniqueID: 2218839925
+    locked: 0
+  - name: background10
+    uniqueID: 1152562141
     locked: 0
   - name: Platform
     uniqueID: 3881619975

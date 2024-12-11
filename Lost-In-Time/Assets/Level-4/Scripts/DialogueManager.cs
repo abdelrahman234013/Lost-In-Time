@@ -64,23 +64,25 @@ public class DialogueManager : MonoBehaviour
         DisplayNextLine();
     }
 
-    // Display the next line of dialogue
     public void DisplayNextLine()
+{
+    if (sentences.Count == 0)
     {
-        // Check if there are no more lines
-        if (sentences.Count == 0)
-        {
-            EndDialogue();  // End the dialogue if no more sentences are left
-            return;
-        }
-
-        // Get the next sentence from the queue
-        string currentSentence = sentences.Dequeue();
-
-        // Stop any ongoing typing coroutine and start a new one
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(currentSentence));
+        EndDialogue();
+        return;
     }
+
+    string currentSentence = sentences.Dequeue();
+    StopAllCoroutines();
+    StartCoroutine(TypeSentence(currentSentence));
+}
+
+public void ContinueButtonClicked()
+{
+    DisplayNextLine();  // Calls the DisplayNextLine method
+}
+
+
 
     // Type the sentence letter by letter
     IEnumerator TypeSentence(string sentence)
