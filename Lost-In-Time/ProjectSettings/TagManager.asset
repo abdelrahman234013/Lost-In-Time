@@ -7,6 +7,10 @@ TagManager:
   - Box
   - enemy
   - Ground
+  - Stone
+  - Wall
+  - Enemy
+  - Audio
   layers:
   - Default
   - TransparentFX
