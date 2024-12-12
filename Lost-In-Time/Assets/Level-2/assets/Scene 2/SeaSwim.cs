@@ -46,5 +46,9 @@ public class SeaSwim : MonoBehaviour
         {
             FlipDirection();  // Flip the direction of the fish when it hits the wall
         }
+        if (collision.CompareTag("Player")){
+            FindObjectOfType<PlayerStats>().TakeDamage(1);
+            FlipDirection();
+        }
     }
 }
