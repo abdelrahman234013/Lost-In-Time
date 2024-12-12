@@ -33,15 +33,15 @@ public class RatScript : MonoBehaviour
     }
 
     // Detect collision with the player and apply damage
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("enemy")){
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("enemy")){
             Flip();
         }
         
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            collision.GetComponent<Health>().TakeDamage(damage);
+            collision.gameObject.GetComponent<Health>().TakeDamage(damage);
             Flip();
         }
     }

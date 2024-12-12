@@ -20,6 +20,7 @@ public class NewDialogueScript : MonoBehaviour
 
     public float typingSpeed = 0.05f;  // Speed of text typing effect
 
+
     private void Start()
     {
         sentences = new Queue<string>();  // Initialize the queue
@@ -88,7 +89,7 @@ public class NewDialogueScript : MonoBehaviour
         }
 
         // Delay before the next sentence
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         DisplayNextLine();
     }
 
