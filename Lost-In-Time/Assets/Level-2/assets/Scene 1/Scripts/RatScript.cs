@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class RatScript : MonoBehaviour
 {
-    public GameObject PointA;
-    public GameObject PointB;
     private Rigidbody2D rb;
     private Animator anim;
-    private Transform currentPoint;
+    private bool movingRight = true; // Determines the direction the rat is moving
     public float speed;
     [SerializeField] private float damage;
 
@@ -16,59 +14,35 @@ public class RatScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        currentPoint = PointB.transform;  // Start by moving towards PointB
         anim.SetBool("isRunning", true);
     }
 
-    private void flip()
+    private void Flip()
     {
+        movingRight = !movingRight; // Toggle the direction
         Vector3 localScale = transform.localScale;
-        localScale.x *= -1;  // Flip the scale horizontally
+        localScale.x *= -1; // Flip the scale horizontally
         transform.localScale = localScale;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        // Move towards the current target point
-        Vector2 targetPosition = currentPoint.position;
-        Vector2 moveDirection = (targetPosition - (Vector2)transform.position).normalized;
-        
-        // Move the rat towards the target
-        rb.velocity = moveDirection * speed;
-
-        // Check if the rat has reached the target point (A or B)
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f)
-        {
-            // Flip the rat when it reaches the current point
-            flip();
-
-            // Switch the target point
-            if (currentPoint == PointB.transform)
-            {
-                currentPoint = PointA.transform;  // Move to PointA
-            }
-            else
-            {
-                currentPoint = PointB.transform;  // Move to PointB
-            }
-        }
-    }
-
-    // Optional: For debugging, visualize the points and movement path
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(PointA.transform.position, 0.5f);
-        Gizmos.DrawWireSphere(PointB.transform.position, 0.5f);
-        Gizmos.DrawLine(PointA.transform.position, PointB.transform.position);
+        // Move the rat in the current direction
+        float moveDirection = movingRight ? 1f : -1f;
+        rb.velocity = new Vector2(moveDirection * speed, rb.velocity.y);
     }
 
     // Detect collision with the player and apply damage
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Ground") || collision.CompareTag("enemy")){
+            Flip();
+        }
+        
+        if (collision.CompareTag("Player"))
         {
             collision.GetComponent<Health>().TakeDamage(damage);
+            Flip();
         }
     }
 }
