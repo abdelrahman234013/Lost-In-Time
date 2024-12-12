@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SawScript : MonoBehaviour
 {
-
     [SerializeField] private float movementDistance;
     [SerializeField] private float speed;
     [SerializeField] private float damage;
@@ -41,12 +40,17 @@ public class SawScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    // Combined OnTriggerEnter2D method
+  private void OnTriggerEnter2D(Collider2D collision)
+{
+    if (collision.CompareTag("Player"))
     {
-        if (collision.tag == "Player")
-        {
-            collision.GetComponent<Health>().TakeDamage(damage);
-        }
+        // Apply damage to the player (if required)
+        collision.GetComponent<Health>().TakeDamage(damage);
+
+        // Respawn the player at the last checkpoint
+        FindObjectOfType<levelMangerlevel2>().RespawnPlayer();
     }
+}
 
 }
