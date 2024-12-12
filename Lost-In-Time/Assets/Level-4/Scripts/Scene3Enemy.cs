@@ -73,10 +73,19 @@ public class Scene3Enemy : MonoBehaviour
     }
 
     void Die()
-    {
-        
-        Destroy(gameObject);
-    }
+{
+    
+    animator.SetTrigger("Die");
+
+    
+    rb.velocity = Vector2.zero;
+    rb.isKinematic = true;
+    GetComponent<Collider2D>().enabled = false;
+
+    
+    Destroy(gameObject, 2f);
+}
+
 
     
     public bool IsPlayerInRange()
