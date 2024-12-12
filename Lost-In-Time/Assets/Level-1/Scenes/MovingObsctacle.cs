@@ -15,6 +15,7 @@ public class MovingObsctacle : MonoBehaviour
     int pointCount;
 
     int direction = 1;
+ 
 
     // Awake is called when the script instance is being loaded
     private void Awake()
@@ -75,4 +76,5 @@ public class MovingObsctacle : MonoBehaviour
             FindObjectOfType<PlayerStats>().TakeDamage(damage);
         }
     }
+    
 }
