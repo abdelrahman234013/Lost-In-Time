@@ -69,18 +69,7 @@ public class JellyFishController : MonoBehaviour
         {
             // Stop moving up and immediately start moving down
             movingUp = false;
-            PlayerStats playerStats = FindObjectOfType<PlayerStats>();
-
-            if (playerStats != null)
-        {
-            Debug.Log($"Player taking {damage} damage.");
-            playerStats.TakeDamage(damage);
-        }
-        else
-        {
-            Debug.LogError("PlayerStats component not found!");
-        }
-
+            FindObjectOfType<PlayerStats>().TakeDamage(damage);
         }
     }
 }

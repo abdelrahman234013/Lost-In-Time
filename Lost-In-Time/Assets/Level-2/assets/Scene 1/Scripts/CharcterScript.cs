@@ -81,6 +81,7 @@ public class CharcterScript : MonoBehaviour
         stonesCollected++; // Increase the stone count
         UpdateStoneCountUI(); // Update the UI
     }
+    
 
     // Update the UI text with the current stone count
     private void UpdateStoneCountUI()

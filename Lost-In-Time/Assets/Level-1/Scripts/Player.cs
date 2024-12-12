@@ -80,6 +80,37 @@ public class Player : MonoBehaviour
     {
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
+
+    public class PlayerController : MonoBehaviour
+{
+    public SpriteRenderer spriteRenderer;
+    public float flickerDuration = 0.1f;
+    public Color flickerColor = Color.red;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Spike")
+        {
+            StartCoroutine(Flicker());
+        }
+    }
+
+    private IEnumerator Flicker()
+    {
+        Color originalColor = spriteRenderer.color;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < flickerDuration)
+        {
+            spriteRenderer.color = flickerColor;
+            yield return new WaitForSeconds(flickerDuration / 2);
+            spriteRenderer.color = originalColor;
+            yield return new WaitForSeconds(flickerDuration / 2);
+            elapsedTime += flickerDuration;
+        }
+    }
+}
+
 }
 // Animator
 //1- Set the transactions 

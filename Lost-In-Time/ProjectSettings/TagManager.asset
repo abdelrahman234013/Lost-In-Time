@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Box
   - enemy
+  - Ground
+  - Stone
+  - Wall
+  - Enemy
+  - Audio
+  - Spire
   layers:
   - Default
   - TransparentFX
