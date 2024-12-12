@@ -61,6 +61,12 @@ TagManager:
   - name: background6
     uniqueID: 3248327589
     locked: 0
+  - name: building
+    uniqueID: 2551588161
+    locked: 0
+  - name: spinning trap
+    uniqueID: 3386463939
+    locked: 0
   - name: Platform
     uniqueID: 3881619975
     locked: 0
