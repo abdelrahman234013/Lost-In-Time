@@ -22,7 +22,7 @@ public class Scene3Enemy : MonoBehaviour
 
     public Animator animator; 
     private Rigidbody2D rb;
-    public float speed = 2.5f;
+    public float speed = 15f;
 
     void Start()
     {

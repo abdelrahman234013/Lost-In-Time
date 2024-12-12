@@ -87,13 +87,8 @@ public class NewDialogueScript : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
 
-<<<<<<< Updated upstream
-        // Delay before the next sentence
+        
         yield return new WaitForSeconds(1f);
-=======
-       
-        yield return new WaitForSeconds(2f);
->>>>>>> Stashed changes
         DisplayNextLine();
     }
 

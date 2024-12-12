@@ -969,7 +969,7 @@ MonoBehaviour:
   detectionAudio: {fileID: 185436600}
   detectionRange: 100
   animator: {fileID: 185436593}
-  speed: 8
+  speed: 50
 --- !u!82 &185436600
 AudioSource:
   m_ObjectHideFlags: 0
@@ -59689,8 +59689,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10.330078, y: -195.24402}
-  m_SizeDelta: {x: -266.7712, y: -379.0173}
+  m_AnchoredPosition: {x: 10.330078, y: -182.94202}
+  m_SizeDelta: {x: -266.7712, y: -372.1628}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1104055092
 MonoBehaviour:
