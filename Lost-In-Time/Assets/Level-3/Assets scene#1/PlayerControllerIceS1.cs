@@ -16,7 +16,7 @@ public class PlayerControllerIceS1 : MonoBehaviour
     private Animator anim;
     public KeyCode Return;
     public Transform firepoint;
-    public Spear spear;
+    public GameObject bullet;
     public AudioClip jump1;
     //public AudioClip jump2;
     //public AudioClip bulletsound;
@@ -79,7 +79,7 @@ public class PlayerControllerIceS1 : MonoBehaviour
 
     public void Shoot()
     {
-        Instantiate(spear, firepoint.position,transform.rotation);
+        Instantiate(bullet, firepoint.position, firepoint.rotation);
         //AudioManagerScript.instance.RandomizeSfx(bulletsound);
     }
 
