@@ -17,7 +17,7 @@ public class FireBulletDinoBoss : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<HealthScript>().TakeDamage(damage);
+            //other.GetComponent<HealthScript>().TakeDamage(damage);
             Destroy(gameObject);
         }
         else if (other.CompareTag("Wall"))
