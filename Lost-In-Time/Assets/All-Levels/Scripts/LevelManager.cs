@@ -5,8 +5,8 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
 
-    // Ensure this field is defined to hold the current checkpoint
-    public GameObject CurrentCheckPoint; // The current checkpoint object (use correct naming)
+    
+    public GameObject CurrentCheckPoint;
 
     void Start()
     {
