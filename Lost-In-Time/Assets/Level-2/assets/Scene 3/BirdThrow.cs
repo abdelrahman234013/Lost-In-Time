@@ -9,11 +9,11 @@ public class BirdThrow : MonoBehaviour
     public Transform throwPoint;      // Point from where the stone will be thrown (in front of the bird)
 
     private Rigidbody rb;             // Bird's Rigidbody to check movement
-    private int stonesThrown = 0;     // Keep track of how many stones the bird has thrown
-    public int maxStones = 3;         // Max number of stones the bird can throw before needing to "reload"
-    public float throwInterval = 2f;  // Interval between throws (in seconds)
+    private int stonesThrown = 10;     // Keep track of how many stones the bird has thrown
+    public int maxStones = 20;         // Max number of stones the bird can throw before needing to "reload"
+    public float throwInterval = 0.1f;  // Interval between throws (in seconds)
     
-    public float reloadTime = 3f;     // Time before the bird can throw again (reload time)
+    public float reloadTime = 0.1f;     // Time before the bird can throw again (reload time)
     
     private bool isMoving = false;    // To track whether the bird is moving or not
 

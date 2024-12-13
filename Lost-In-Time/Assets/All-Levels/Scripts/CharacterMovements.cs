@@ -17,7 +17,8 @@ public class CharacterMovements : MonoBehaviour
     private bool grounded;
     public KeyCode E;
     public Transform firepoint;
-    public GameObject bullet;  
+    public GameObject bullet;
+    public AudioSource shootSound;   
     
 
 
@@ -66,6 +67,10 @@ animator.SetFloat("Speed",Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
 
     public void Shoot(){
          Instantiate(bullet,firepoint.position, firepoint.rotation);
+          if (shootSound != null)
+        {
+            shootSound.Play();
+        }
     }
     void Jump(){
         GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);

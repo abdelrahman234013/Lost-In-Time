@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ManagerScript : MonoBehaviour
 {
-    public GameObject CurrentCheckpoint;
-    //public Transform enemy;
+       public GameObject CurrentCheckpoint; // Current checkpoint the player is at
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +20,14 @@ public class ManagerScript : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        FindObjectOfType<PlayerControllerIce>().transform.position = CurrentCheckpoint.transform.position;
+        // Move player to the checkpoint position
+        FindObjectOfType<CharcterScript>().transform.position = CurrentCheckpoint.transform.position;
+
+        // Reset health and start idle animation
+        HealthScript healthScript = FindObjectOfType<HealthScript>();
+        if (healthScript != null)
+        {
+            healthScript.Respawn();
+        }
     }
-    
-   // public void RespawnEnemy()
-   // {
-    //    Instantiate(enemy, transform.position, transform.rotation);
-   // }
 }

@@ -1,58 +1,76 @@
 using System.Collections;
 using UnityEngine;
 
+
 public class HealthScript : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField] private float startingHealth;
     public float currentHealth { get; private set; }
     private Animator anim;
     private bool dead;
-    private CharcterScript characterScript;
-    public Transform respawnPoint;  // Reference to the respawn point
 
-    void Start()
+    [Header("Lives")]
+    [SerializeField] private int maxLives = 3; // Track the max lives
+    private int remainingLives;
+
+    [Header("iFrames")]
+    [SerializeField] private float iFramesDuration;
+    [SerializeField] private int numberOfFlashes;
+    private SpriteRenderer spriteRend;
+
+    [Header("Components")]
+    [SerializeField] private Behaviour[] components;
+
+    [Header("Death Sound")]
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip hurtSound;
+
+    private PlayerRespawn playerRespawn;
+
+    private void Awake()
     {
+        remainingLives = maxLives; // Initialize lives
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
-        characterScript = GetComponent<CharcterScript>();
+        spriteRend = GetComponent<SpriteRenderer>();
+        playerRespawn = GetComponent<PlayerRespawn>(); // Get the PlayerRespawn component
     }
 
-    public void TakeDamage(float _damage)
-    {
-        Debug.Log("Damage taken: " + _damage);
-        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
+    public int health = 100;
 
-        if (currentHealth > 0)
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
         {
-            anim.SetTrigger("hurt");
-        }
-        else
-        {
-            if (!dead)
+            // Handle death (e.g., call death logic)
+            if (remainingLives > 1)
             {
-                anim.SetTrigger("die");
-                GetComponent<CharcterScript>().enabled = false;
-                dead = true;
-                StartCoroutine(Respawn());  // Start respawn process
+                remainingLives--;
+                Respawn(); // If player has lives left, respawn at checkpoint
+            }
+            else
+            {
+                Die(); // If last life is lost, player dies and respawns at checkpoint
             }
         }
     }
 
-    private IEnumerator Respawn()
+    private void Die()
     {
-        // Wait for a short period of time to show the death animation
-        yield return new WaitForSeconds(2f);
+        Debug.Log("Player Died");
 
-        // Move the character to the respawn point
-        transform.position = respawnPoint.position;
+        anim.SetTrigger("Dead"); // Trigger death animation
 
-        // Reset the health and enable the character's script again
-        currentHealth = startingHealth;
-        characterScript.enabled = true;
+        // Play death sound, if any
+        if (deathSound)
+        {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        }
 
-        // Reset death status and any other required variables
-        dead = false;
-        anim.SetTrigger("respawn");  // Optionally, trigger a respawn animation if you have one
+        // Call respawn logic from the Level Manager to respawn at the checkpoint
+        FindObjectOfType<ManagerScript>().RespawnPlayer(); // Respawn at last checkpoint
     }
 
     public void AddHealth(float _value)
@@ -60,8 +78,15 @@ public class HealthScript : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
 
-    void Update()
+    public void Respawn()
     {
-        if (Input.GetKeyDown(KeyCode.E)) TakeDamage(1);
+        currentHealth = startingHealth; // Reset health
+        anim.ResetTrigger("Dead");
+        anim.Play("Idle"); // Play idle animation when respawned
+
+        // Reset all components (e.g., movement, physics)
+        foreach (Behaviour component in components)
+            component.enabled = true;
     }
 }
+
