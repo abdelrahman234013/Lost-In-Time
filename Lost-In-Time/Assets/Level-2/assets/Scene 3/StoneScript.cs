@@ -12,8 +12,6 @@ public class StoneScript : MonoBehaviour
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
     }
 
-    
-
     // Freeze the stone's movement after hitting the ground
     private void FreezeStone()
     {
@@ -24,10 +22,17 @@ public class StoneScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if (collision.tag == "Player")
+        // Check if the stone hits an object tagged as "Player"
+        if (collision.CompareTag("Player"))
         {
+            // Damage the player
             collision.GetComponent<Health>().TakeDamage(damage);
+        }
+        // Check if the stone hits an object tagged as "Ground"
+        else if (collision.CompareTag("Ground"))
+        {
+            // Destroy the stone if it hits the ground
+            Destroy(gameObject); // Destroys the stone object
         }
     }
 }
