@@ -6,10 +6,17 @@ public class FireBulletDinoBoss : MonoBehaviour
 {
     public float speed = 10f; 
     public float damage = 20f;
+    private Vector3 direction;
 
     void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+         transform.position += direction * speed * Time.deltaTime;
+    }
+
+
+    public void SetDirection(Vector3 newDirection)
+    {
+        direction = newDirection.normalized; // Normalize for consistent speed
     }
 
     

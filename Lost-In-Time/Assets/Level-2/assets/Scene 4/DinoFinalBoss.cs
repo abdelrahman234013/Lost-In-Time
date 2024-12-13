@@ -96,21 +96,35 @@ public class DinoFinalBoss : MonoBehaviour
         }
     }
 
-    void FireBullet()
-    {
-        Vector3 fireDirection = isFacingRight ? Vector3.right : Vector3.left;
-    
-        // Instantiate the fire bullet in front of the boss
-        GameObject bullet = Instantiate(fireBulletPrefab, transform.position + fireDirection * 1.5f, Quaternion.identity); // Fire in front of the boss
-    
-        // Flip the bullet's direction based on the boss's facing direction
-        if (!isFacingRight)
-        {
-            bullet.transform.localScale = new Vector3(-1, 1, 1); // Flip horizontally if boss is facing left
-        }
-
-        bullet.transform.rotation = Quaternion.Euler(0, 0, 90);
+void FireBullet()
+{
+    if (isFacingRight == Vector3.right){
+        Vector3 fireDirection = Vector3.left;
     }
+    else {
+        Vector3 fireDirection = Vector3.right;
+    }
+
+    // Instantiate the fire bullet at the appropriate position
+    GameObject bullet = Instantiate(
+        fireBulletPrefab,
+        transform.position + fireDirection * 1.5f,
+        Quaternion.identity
+    );
+
+    // Flip the bullet's sprite if the boss is facing left
+    if (!isFacingRight)
+    {
+        bullet.transform.localScale = new Vector3(-1, 1, 1);
+    }
+
+    // Assign the movement direction to the bullet's script
+    FireBulletDinoBoss bulletScript = bullet.GetComponent<FireBulletDinoBoss>();
+    if (bulletScript != null)
+    {
+        bulletScript.SetDirection(fireDirection);
+    }
+}
 
     IEnumerator MoveToTarget()
     {
