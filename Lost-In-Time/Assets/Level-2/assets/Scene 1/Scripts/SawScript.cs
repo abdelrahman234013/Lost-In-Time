@@ -41,15 +41,15 @@ public class SawScript : MonoBehaviour
     }
 
     // Combined OnTriggerEnter2D method
-  private void OnTriggerEnter2D(Collider2D collision)
+private void OnTriggerEnter2D(Collider2D collision)
 {
     if (collision.CompareTag("Player"))
     {
         // Apply damage to the player (if required)
         collision.GetComponent<Health>().TakeDamage(damage);
 
-        // Respawn the player at the last checkpoint
-        FindObjectOfType<levelMangerlevel2>().RespawnPlayer();
+        // Respawn the player at the last checkpoint (instead of the default respawn)
+        FindObjectOfType<PlayerRespawn>().RespawnAtCheckpoint();
     }
 }
 

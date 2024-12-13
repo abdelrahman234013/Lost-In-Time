@@ -13,6 +13,9 @@ TagManager:
   - Audio
   - Spire
   - Boss
+  - Ladder
+  - fish
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
