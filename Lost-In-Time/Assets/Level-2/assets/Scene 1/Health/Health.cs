@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+
 public class HealthScript : MonoBehaviour
 {
     [Header("Health")]
@@ -9,6 +10,10 @@ public class HealthScript : MonoBehaviour
     private Animator anim;
     private bool dead;
 
+    [Header("Lives")]
+    [SerializeField] private int maxLives = 3; // Track the max lives
+    private int remainingLives;
+
     [Header("iFrames")]
     [SerializeField] private float iFramesDuration;
     [SerializeField] private int numberOfFlashes;
@@ -16,7 +21,6 @@ public class HealthScript : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Behaviour[] components;
-    private bool invulnerable;
 
     [Header("Death Sound")]
     [SerializeField] private AudioClip deathSound;
@@ -26,70 +30,63 @@ public class HealthScript : MonoBehaviour
 
     private void Awake()
     {
+        remainingLives = maxLives; // Initialize lives
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
         spriteRend = GetComponent<SpriteRenderer>();
         playerRespawn = GetComponent<PlayerRespawn>(); // Get the PlayerRespawn component
     }
 
-
     public int health = 100;
 
-    // This method should reduce health
     public void TakeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
         {
             // Handle death (e.g., call death logic)
-            Die();
+            if (remainingLives > 1)
+            {
+                remainingLives--;
+                Respawn(); // If player has lives left, respawn at checkpoint
+            }
+            else
+            {
+                Die(); // If last life is lost, player dies and respawns at checkpoint
+            }
         }
     }
 
     private void Die()
     {
         Debug.Log("Player Died");
-        // Handle player death logic here
+
+        anim.SetTrigger("Dead"); // Trigger death animation
+
+        // Play death sound, if any
+        if (deathSound)
+        {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        }
+
+        // Call respawn logic from the Level Manager to respawn at the checkpoint
+        FindObjectOfType<ManagerScript>().RespawnPlayer(); // Respawn at last checkpoint
     }
-
-
-
-
 
     public void AddHealth(float _value)
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
 
-    private IEnumerator Invunerability()
-    {
-        invulnerable = true;
-        Physics2D.IgnoreLayerCollision(10, 11, true);
-        for (int i = 0; i < numberOfFlashes; i++)
-        {
-            spriteRend.color = new Color(1, 0, 0, 0.5f);
-            yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
-            spriteRend.color = Color.white;
-            yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
-        }
-        Physics2D.IgnoreLayerCollision(10, 11, false);
-        invulnerable = false;
-    }
-
-    private void Deactivate()
-    {
-        gameObject.SetActive(false);
-    }
-
-    // Respawn the player with full health
     public void Respawn()
     {
-        AddHealth(startingHealth);
+        currentHealth = startingHealth; // Reset health
         anim.ResetTrigger("Dead");
-        anim.Play("Idle");
+        anim.Play("Idle"); // Play idle animation when respawned
 
-        // Activate all attached component classes
+        // Reset all components (e.g., movement, physics)
         foreach (Behaviour component in components)
             component.enabled = true;
     }
 }
+
