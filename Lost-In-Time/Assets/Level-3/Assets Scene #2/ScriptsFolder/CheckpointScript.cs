@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CheckpointScript : MonoBehaviour
 {
+    public AudioClip PassedSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class CheckpointScript : MonoBehaviour
         if (other.tag=="Player")
         {
             FindObjectOfType<ManagerScript>().CurrentCheckpoint = this.gameObject;
+            AudioManagerScript.instance.RandomizeSfx(PassedSound);
         }
     }
 }

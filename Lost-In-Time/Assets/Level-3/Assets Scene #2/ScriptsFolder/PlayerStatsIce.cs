@@ -14,7 +14,6 @@ public class PlayerStatsIce : MonoBehaviour
     public float immunityDuration = 1.5f;
     public int fishCollected = 0;
     public AudioClip deathSound;
-    //public TextMeshProUGUI ScoreUi;
 
     // Start is called before the first frame update
     void Start()

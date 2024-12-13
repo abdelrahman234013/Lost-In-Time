@@ -13,6 +13,8 @@ TagManager:
   - Audio
   - Spire
   - Boss
+  - Ladder
+  - fish
   layers:
   - Default
   - TransparentFX
@@ -36,16 +38,16 @@ TagManager:
   - Icicle
   - Platform
   - Boulder
-  - Sign
-  - Cieling
+  - Sign/Door
+  - Potion
   - Camera
-  - Door
+  - Further tree
   - Check point
   - Fish
-  - 
-  - 
-  - 
-  - 
+  - Penguin
+  - Snow
+  - Sky
+  - Tree
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -80,17 +82,11 @@ TagManager:
   - name: background10
     uniqueID: 1152562141
     locked: 0
-  - name: Platform
-    uniqueID: 3881619975
-    locked: 0
   - name: Jack
     uniqueID: 1776685843
     locked: 0
   - name: acid
     uniqueID: 1242786773
-    locked: 0
-  - name: Box
-    uniqueID: 175498755
     locked: 0
   - name: Smoke
     uniqueID: 1217535433
@@ -119,12 +115,6 @@ TagManager:
   - name: Spike
     uniqueID: 1224195971
     locked: 0
-  - name: Transparent wall
-    uniqueID: 560733959
-    locked: 0
-  - name: Wall
-    uniqueID: 3987637673
-    locked: 0
   - name: Button
     uniqueID: 2726933711
     locked: 0
@@ -138,20 +128,35 @@ TagManager:
     uniqueID: 2872064549
     locked: 0
   - name: Platform
-    uniqueID: 3657348291
+    uniqueID: 3881619975
     locked: 0
   - name: Door
     uniqueID: 1357551813
     locked: 0
-  - name: Sign
+  - name: Trapdoor
+    uniqueID: 3081248739
+    locked: 0
+  - name: Sign/Door
     uniqueID: 2252562373
     locked: 0
-  - name: Ground
-    uniqueID: 1794505791
+  - name: Box
+    uniqueID: 175498755
+    locked: 0
+  - name: Potion
+    uniqueID: 3657348291
     locked: 0
   - name: Cieling
     uniqueID: 314980559
     locked: 0
   - name: Player
     uniqueID: 3376456073
+    locked: 0
+  - name: Transparent wall
+    uniqueID: 560733959
+    locked: 0
+  - name: Wall
+    uniqueID: 3987637673
+    locked: 0
+  - name: Ground
+    uniqueID: 1794505791
     locked: 0

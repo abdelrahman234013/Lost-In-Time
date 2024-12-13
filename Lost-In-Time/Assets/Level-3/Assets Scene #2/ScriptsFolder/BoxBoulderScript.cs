@@ -8,7 +8,8 @@ public class BoxBoulderScript : MonoBehaviour
     private Rigidbody2D rb;
     /*public Transform groundCheck;
     public float groundCheckRadius;
-    public LayerMask whatIsGround;*/       // Rigidbody2D of the box
+    public LayerMask whatIsGround;       // Rigidbody2D of the box
+    private bool grounded;*/
 
     void Start()
     {
@@ -20,4 +21,10 @@ public class BoxBoulderScript : MonoBehaviour
     {
         rb.velocity = direction * moveSpeed;
     }
+
+    /*void FixedUpdate()
+    {
+        grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        
+    }*/
 }

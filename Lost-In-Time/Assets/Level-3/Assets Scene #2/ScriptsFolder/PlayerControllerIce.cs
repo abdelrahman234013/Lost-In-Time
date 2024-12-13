@@ -14,12 +14,7 @@ public class PlayerControllerIce : MonoBehaviour
     public LayerMask whatIsGround;
     private bool grounded;
     private Animator anim;
-    //public KeyCode Return;
-    //public Transform firepoint;
-    //public GameObject bullet;
-    public AudioClip jump1;
-    //public AudioClip jump2;
-    //public AudioClip bulletsound;
+    public AudioClip jump;
     public KeyCode P;  // Key to pull the box
     public LayerMask boxLayer;  // Layer of the box
     private GameObject detectedBox; 
@@ -64,11 +59,6 @@ public class PlayerControllerIce : MonoBehaviour
 
         anim.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
         anim.SetBool("Grounded", grounded);
-
-        //if (Input.GetKeyDown(Return))
-        //{
-        //    Shoot();
-        //}
     }
 
     void FixedUpdate()
@@ -77,16 +67,10 @@ public class PlayerControllerIce : MonoBehaviour
         
     }
 
-    //public void Shoot()
-    //{
-    //    Instantiate(bullet, firepoint.position, firepoint.rotation);
-    //    AudioManagerScript.instance.RandomizeSfx(bulletsound);
-    //}
-
     void Jump()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
-        AudioManagerScript.instance.RandomizeSfx(jump1); //, jump2);
+        AudioManagerScript.instance.RandomizeSfx(jump);
     }
 
      void DetectBox()  // Detects and interacts with a box in front of the player
@@ -115,5 +99,4 @@ public class PlayerControllerIce : MonoBehaviour
             detectedBox = null;  // No box detected in front of the player
         }
     }
-
 }
