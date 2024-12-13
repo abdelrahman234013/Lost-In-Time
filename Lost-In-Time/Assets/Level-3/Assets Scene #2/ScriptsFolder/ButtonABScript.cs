@@ -6,11 +6,9 @@ public class ButtonABScript : MonoBehaviour
 {
     public bool isPressed = false;
     public Animator buttonanimator; // To track button state
-    //public Color pressedColor = Color.red;
-    //public Color defaultColor = Color.white;
-
     private SpriteRenderer spriteRenderer;
     public TrapdoorABScript trapdoor;
+    public AudioClip PushedSound;
 
     private void Start()
     {
@@ -26,10 +24,10 @@ public class ButtonABScript : MonoBehaviour
             if (buttonanimator != null)
         {
             buttonanimator.SetTrigger("Pushed");
+            AudioManagerScript.instance.RandomizeSfx(PushedSound);
         }
 
         trapdoor.OpenTrapdoor();
-            //spriteRenderer.color = pressedColor;
         }
     }
 
@@ -38,7 +36,6 @@ public class ButtonABScript : MonoBehaviour
         if (collision.CompareTag("Box"))
         {
             isPressed = false;
-            //spriteRenderer.color = defaultColor;
         }
     }
 }

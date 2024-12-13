@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 1583549165839657769}
   - component: {fileID: 4474214350917972909}
   - component: {fileID: 4474214350917972904}
-  - component: {fileID: 4474214350917972911}
   - component: {fileID: 4474214350917972906}
   - component: {fileID: 4474214350917972907}
-  m_Layer: 12
+  m_Layer: 3
   m_Name: Trapdoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5718954836319233780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.271, y: -0.99299985, z: 0}
-  m_LocalScale: {x: 0.35258025, y: 0.23715052, z: 1}
+  m_LocalPosition: {x: -0.248, y: -1.185, z: 0}
+  m_LocalScale: {x: 0.35483676, y: 0.3548368, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 881197847
-  m_SortingLayer: 17
+  m_SortingLayerID: 1794505791
+  m_SortingLayer: 33
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6e12d0a5578011e45a755b37797626fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -114,27 +113,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.623915, y: 1.501285}
   m_EdgeRadius: 0
---- !u!50 &4474214350917972911
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5718954836319233780}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!95 &4474214350917972906
 Animator:
   serializedVersion: 4
@@ -168,3 +146,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapdoorAnimator: {fileID: 4474214350917972906}
+  trapdoorCollider: {fileID: 4474214350917972904}

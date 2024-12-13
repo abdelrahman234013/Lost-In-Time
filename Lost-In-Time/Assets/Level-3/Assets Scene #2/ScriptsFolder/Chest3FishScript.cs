@@ -9,6 +9,8 @@ public class Chest3FishScript : MonoBehaviour
     public GameObject fish; // Optional: Assign a reward prefab to instantiate when opened
     private bool isPlayerNearby = false; // Check if the player is near the chest
     private bool isOpen = false; // Check if the chest is already open
+    public PlayerStatsIce player;
+    public AudioClip OpenSound;
 
     void Update()
     {
@@ -25,7 +27,8 @@ public class Chest3FishScript : MonoBehaviour
         // Trigger an animation if available
         if (chestanimator != null)
         {
-            chestanimator.SetTrigger("Open");
+            chestanimator.SetTrigger("Open"); 
+            AudioManagerScript.instance.RandomizeSfx(OpenSound);
         }
 
         // Spawn a reward if specified
@@ -35,7 +38,7 @@ public class Chest3FishScript : MonoBehaviour
         
         }
 
-        Debug.Log("Chest Opened, you recieved 3 fish!");
+        Debug.Log("Chest Opened, you recieved 3 fish! You now have " + player.fishCollected + " fish collected!");
     }
 
     void OnTriggerEnter2D(Collider2D other)

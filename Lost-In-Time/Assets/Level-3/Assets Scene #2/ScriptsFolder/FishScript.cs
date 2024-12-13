@@ -5,6 +5,7 @@ using UnityEngine;
 public class FishScript : MonoBehaviour
 {
     public int fishvalue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +21,10 @@ public class FishScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.name == "Jack")
-       {
+        {
             FindObjectOfType<PlayerStatsIce>(). fishCollected += fishvalue;
-            Destroy(this.gameObject);
         }
+
+        Object.Destroy(gameObject, .5f);
     }
 }

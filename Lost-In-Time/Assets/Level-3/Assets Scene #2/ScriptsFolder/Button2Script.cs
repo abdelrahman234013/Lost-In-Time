@@ -6,11 +6,10 @@ public class Button2Script : MonoBehaviour
 {
     public bool button2isPressed = false;
     public Animator buttonanimator; // To track button state
-    //public Color pressedColor = Color.red;
-    //public Color defaultColor = Color.white;
 
     private SpriteRenderer spriteRenderer;
     public DoorScript door;
+    public AudioClip PushedSound;
 
     private void Start()
     {
@@ -26,13 +25,17 @@ public class Button2Script : MonoBehaviour
             if (buttonanimator != null)
         {
             buttonanimator.SetTrigger("Pushed");
+            AudioManagerScript.instance.RandomizeSfx(PushedSound);
         }
 
+         Invoke(nameof(DelayedCheckAllButtons), 0.1f);
+
+        }
+    }
+
+    private void DelayedCheckAllButtons()
+    {
         door.CheckAllButtons();
-
-        //door.Door();
-            //spriteRenderer.color = pressedColor;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -40,7 +43,6 @@ public class Button2Script : MonoBehaviour
         if (collision.CompareTag("Box"))
         {
             button2isPressed = false;
-            //spriteRenderer.color = defaultColor;
         }
     }
 }
