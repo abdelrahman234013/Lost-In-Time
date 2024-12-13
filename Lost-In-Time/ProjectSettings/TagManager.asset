@@ -3,36 +3,48 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Box
+  - enemy
+  - Ground
+  - Stone
+  - Wall
+  - Enemy
+  - Audio
+  - Spire
+  - Boss
+  - Ladder
+  - fish
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Box
+  - Boss
+  - Background
+  - Foreground
+  - Ladder
+  - Chest
+  - Spike
+  - Trapdoor
+  - Lever
+  - Wall
+  - Transparent wall
+  - Button
+  - Icicle
+  - Platform
+  - Boulder
+  - Sign
+  - Cieling
+  - Camera
+  - Door
+  - Check point
+  - Fish
   - 
   - 
   - 
@@ -40,4 +52,109 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background1
+    uniqueID: 2925621519
+    locked: 0
+  - name: background2
+    uniqueID: 2024524277
+    locked: 0
+  - name: background3
+    uniqueID: 1302284983
+    locked: 0
+  - name: background4
+    uniqueID: 2466899115
+    locked: 0
+  - name: background5
+    uniqueID: 1027392525
+    locked: 0
+  - name: background6
+    uniqueID: 3248327589
+    locked: 0
+  - name: background7
+    uniqueID: 1236657393
+    locked: 0
+  - name: background8
+    uniqueID: 2965749815
+    locked: 0
+  - name: background9
+    uniqueID: 2218839925
+    locked: 0
+  - name: background10
+    uniqueID: 1152562141
+    locked: 0
+  - name: Platform
+    uniqueID: 3881619975
+    locked: 0
+  - name: Jack
+    uniqueID: 1776685843
+    locked: 0
+  - name: acid
+    uniqueID: 1242786773
+    locked: 0
+  - name: Box
+    uniqueID: 175498755
+    locked: 0
+  - name: Smoke
+    uniqueID: 1217535433
+    locked: 0
+  - name: New Layer 12
+    uniqueID: 2538558689
+    locked: 0
+  - name: Background
+    uniqueID: 3863996527
+    locked: 0
+  - name: Foreground
+    uniqueID: 3313923839
+    locked: 0
+  - name: Check point
+    uniqueID: 2494602553
+    locked: 0
+  - name: Icicle
+    uniqueID: 3341579733
+    locked: 0
+  - name: Fish
+    uniqueID: 3370458119
+    locked: 0
+  - name: Chest
+    uniqueID: 2633731625
+    locked: 0
+  - name: Spike
+    uniqueID: 1224195971
+    locked: 0
+  - name: Transparent wall
+    uniqueID: 560733959
+    locked: 0
+  - name: Wall
+    uniqueID: 3987637673
+    locked: 0
+  - name: Button
+    uniqueID: 2726933711
+    locked: 0
+  - name: Boulder
+    uniqueID: 2230559321
+    locked: 0
+  - name: Ladder
+    uniqueID: 1294797785
+    locked: 0
+  - name: Lever
+    uniqueID: 2872064549
+    locked: 0
+  - name: Platform
+    uniqueID: 3657348291
+    locked: 0
+  - name: Door
+    uniqueID: 1357551813
+    locked: 0
+  - name: Sign
+    uniqueID: 2252562373
+    locked: 0
+  - name: Ground
+    uniqueID: 1794505791
+    locked: 0
+  - name: Cieling
+    uniqueID: 314980559
+    locked: 0
+  - name: Player
+    uniqueID: 3376456073
     locked: 0
