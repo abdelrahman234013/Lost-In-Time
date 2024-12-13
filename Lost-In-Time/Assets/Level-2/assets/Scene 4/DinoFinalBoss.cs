@@ -4,114 +4,196 @@ using UnityEngine;
 
 public class DinoFinalBoss : MonoBehaviour
 {
-    public float speed = 2f;
-    public bool movingRight = false;
-    public float idleTime = 3f; // Time to stay idle before moving again
-    public Transform startPoint; // Start point of the patrol
-    public Transform endPoint;   // End point of the patrol
+    public Animator animator;
+    public Transform pointA;
+    public Transform pointB;
+    public float moveSpeed = 5f;
+    private Transform currentTarget;
 
-    private Animator animator;
+    public float health = 100f;
+    private bool isDead = false;
+    public float OrigianlY;
 
-    private bool isAttacking = false; // Check if the boss is in attack mode
-    private bool isIdle = false;     // Flag to control idle state
+    public float pushForceX = 20f; 
+    public float pushForceY = 30f; 
+    private bool isFacingRight = true;
+    private bool isAtPointA = true; 
+    private bool isAtPointB = false; 
+    private bool isIdle = true; 
+    private bool isImmune = false; 
+    public float DamageTail = 10f; 
+    private bool Started = false;
 
-    private float idleYPosition = -1.2f;   // Fixed y-position for idle state
-    private float walkingYPosition = -1.4f; // Fixed y-position for walking state
+    public Transform WallLeft;
+    public Transform WallRight;
 
-    private void Start()
+    public GameObject fireBulletPrefab;
+
+    void Start()
     {
-        animator = GetComponent<Animator>();
+        transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
     }
 
-    private void Update()
+    public void StartBossFight()
     {
-        if (!isAttacking && !isIdle) // Only move if not attacking and not idle
+        if (!Started)
         {
-            MoveBoss();
+            Started = true;
+            StartCoroutine(BossBehavior()); // Start the boss behavior when the fight begins
+        }
+
+        OrigianlY = transform.position.y;
+        currentTarget = pointA;
+
+        StartCoroutine(DisableWallTriggersAfterDelay());
+    }
+
+    IEnumerator DisableWallTriggersAfterDelay(){
+
+    yield return new WaitForSeconds(1);
+
+    WallRight.GetComponent<Collider2D>().isTrigger = false;
+    WallLeft.GetComponent<Collider2D>().isTrigger = false;
+
+    }
+
+    IEnumerator BossBehavior()
+    {
+        while (!isDead)
+        {
+
+            isIdle = true;
+            transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
+            animator.SetBool("IsWalking", false);
+            yield return new WaitForSeconds(3);
+
+            transform.position = new Vector3(transform.position.x, -0.8f, transform.position.z);
+            animator.SetTrigger("AttackTrigger");
+
+            FireBullet();
+
+            yield return new WaitForSeconds(3);
+
+            animator.SetTrigger("ReverseAttackTrigger");
+            transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
+            yield return new WaitForSeconds(3);
+
+            isIdle = false;
+            isImmune = false;
+            animator.SetBool("IsWalking", true);
+
+            isAtPointA = false;
+            isAtPointB = false;
+
+            yield return MoveToTarget();
+
+            transform.position = new Vector3(transform.position.x, OrigianlY, transform.position.z);
+            animator.SetBool("IsWalking", false);
+            isIdle = true;
+
+            transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
+            yield return new WaitForSeconds(3);
         }
     }
 
-    private void MoveBoss()
+    void FireBullet()
     {
-        if (isAttacking || isIdle) return; // Don't move if attacking or idle
-
-        float moveDirection = movingRight ? 1 : -1;
-        Vector3 position = transform.position;
-        position.x += moveDirection * speed * Time.deltaTime;
-        position.y = walkingYPosition; // Set y-position for walking
-        transform.position = position;
-
-        // Check if the boss reached the start or end point
-        if (movingRight && position.x >= endPoint.position.x)
+        Vector3 fireDirection = isFacingRight ? Vector3.right : Vector3.left;
+    
+        // Instantiate the fire bullet in front of the boss
+        GameObject bullet = Instantiate(fireBulletPrefab, transform.position + fireDirection * 1.5f, Quaternion.identity); // Fire in front of the boss
+    
+        // Flip the bullet's direction based on the boss's facing direction
+        if (!isFacingRight)
         {
-            ChangeDirection();
-        }
-        else if (!movingRight && position.x <= startPoint.position.x)
-        {
-            ChangeDirection();
-        }
-    }
-
-    private void ChangeDirection()
-    {
-        movingRight = !movingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1; // Flip the sprite horizontally
-        transform.localScale = localScale;
-
-        StartCoroutine(IdleState()); // Enter idle state for 3 seconds
-    }
-
-    private IEnumerator IdleState()
-    {
-    isIdle = true; // Set idle flag to true
-    animator.SetBool("IsIdle", true); // Enable idle animation
-    animator.SetBool("IsWalking", false);
-    animator.SetBool("Attack", false); // Ensure attacking animation is disabled
-
-    Vector3 position = transform.position;
-    position.y = idleYPosition; // Set y-position for idle state
-    transform.position = position;
-
-    // Initial idle phase
-    yield return new WaitForSeconds(idleTime);
-
-    // Play attack animation for 2 seconds
-    animator.SetBool("IsIdle", false); // Disable idle animation
-    animator.SetBool("IsWalking", false);
-    animator.SetBool("Attack", true); // Enable attack animation
-    yield return new WaitForSeconds(2f); // Wait for attack animation to finish
-
-    // Post-attack idle phase
-    animator.SetBool("Attack", false); // Disable attacking animation
-    animator.SetBool("IsIdle", true); // Return to idle animation
-    yield return new WaitForSeconds(idleTime);
-
-    // After idle and attack animations, resume movement
-    isIdle = false; // Reset idle flag
-    animator.SetBool("IsIdle", false); // Disable idle animation
-    animator.SetBool("IsWalking", true); // Enable walking animation
-    }
-
-    private IEnumerator AttackPlayer(Collider2D player)
-    {
-        isAttacking = true; // Set attacking state to true
-        animator.SetTrigger("Attack"); // Trigger attack animation
-
-        // Apply force to the player to knock them back
-        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
-        if (playerRb != null)
-        {
-            Vector2 knockbackForce = new Vector2(movingRight ? 5f : -10f, 10f);
-            playerRb.velocity = Vector2.zero; // Stop the player momentarily before knockback
-            playerRb.AddForce(knockbackForce, ForceMode2D.Impulse); // Knock the player back
+            bullet.transform.localScale = new Vector3(-1, 1, 1); // Flip horizontally if boss is facing left
         }
 
-        // Wait for the attack animation to finish (adjust the wait time based on animation length)
-        yield return new WaitForSeconds(1f); // Adjust this based on the animation length
+        bullet.transform.rotation = Quaternion.Euler(0, 0, 90);
+    }
 
-        ChangeDirection(); // Flip direction after attack
-        isAttacking = false; // End attacking state
-        StartCoroutine(IdleState()); // Go to idle state for 3 seconds
+    IEnumerator MoveToTarget()
+    {
+        float startY = transform.position.y;
+        float targetX = currentTarget.position.x;
+
+        while (Mathf.Abs(transform.position.x - targetX) > 0.1f)
+        {
+            float step = moveSpeed * Time.deltaTime;
+            transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, targetX, step), startY, transform.position.z);
+
+            yield return null;
+        }
+
+        if (currentTarget == pointA)
+        {
+            isAtPointA = true;
+        }
+        else if (currentTarget == pointB)
+        {
+            isAtPointB = true;
+        }
+
+        FlipDirection();
+        currentTarget = currentTarget == pointA ? pointB : pointA;
+    }
+
+    void FlipDirection()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = -scale.x;
+        transform.localScale = scale;
+
+        isFacingRight = scale.x > 0;
+    }
+
+    public void TakeDamage(float damage)
+{
+    if (!isIdle || isImmune || isDead) return;
+
+    health -= damage; isImmune = true;
+
+    if (health <= 0)
+    {
+        isDead = true;
+        animator.SetTrigger("DeadTrigger");
+        StartCoroutine(DisappearAfterDeath());
+    }
+    else
+    {
+        animator.SetTrigger("HurtTrigger");
+    }
+}
+
+    IEnumerator DisappearAfterDeath()
+    {   
+        WallRight.GetComponent<Collider2D>().isTrigger = true;
+
+        yield return new WaitForSeconds(0.8f);
+        animator.SetBool("IsDead", true);
+        transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
+
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player")) 
+        {
+            if (isAtPointA || isAtPointB) 
+            {
+                Rigidbody2D playerRb = collision.GetComponent<Rigidbody2D>();
+
+                    Vector2 pushDirection = !isFacingRight ? Vector2.right : Vector2.left;
+                    pushDirection *= pushForceX;
+                    pushDirection.y = pushForceY;
+
+                    playerRb.velocity = Vector2.zero; 
+                    playerRb.AddForce(pushDirection, ForceMode2D.Impulse);
+
+                    TakeDamage(DamageTail);
+            }
+        }
     }
 }
