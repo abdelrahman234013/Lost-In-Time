@@ -1,28 +1,29 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class Scene3Enemy : MonoBehaviour
 {
     public Transform player;
     public bool isFlipped = false;
-
     public int maxHealth = 100;
     private int currentHealth;
     public int attackDamage = 20;
     public float attackRange = 8f;
-
     public HealthBarScene3 healthBar;
-
     public AudioSource detectionAudio;
     public float detectionRange = 100f;
-
     private bool hasDetectedPlayer = false;
     private bool hasStartedRunning = false;
     private float runDelay = 5f;
     private float runTimer = 0f;
-
     public Animator animator; 
     private Rigidbody2D rb;
     public float speed = 15f;
+    public GameObject FinalKey;
+    public float keyDropForce = 5f;
+    public int healthRegenerationAmount = 10;
+    public float healthRegenerationInterval = 10f;
 
     void Start()
     {
@@ -34,7 +35,20 @@ public class Scene3Enemy : MonoBehaviour
 
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        StartCoroutine(HealthRegenerationCoroutine());
+
+        
     }
+
+    IEnumerator HealthRegenerationCoroutine()
+{
+    while (currentHealth > 0)
+    {
+        yield return new WaitForSeconds(healthRegenerationInterval);
+        RegenerateHealth();
+    }
+}
 
    
     public void LookAtPlayer()
@@ -73,18 +87,28 @@ public class Scene3Enemy : MonoBehaviour
     }
 
     void Die()
+    {
+        animator.SetTrigger("Die");
+
+        rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
+        GetComponent<Collider2D>().enabled = false;
+
+        DropKey();
+
+        
+        Destroy(gameObject, 2f);
+    }
+
+    void DropKey()
 {
-    
-    animator.SetTrigger("Die");
-
-    
-    rb.velocity = Vector2.zero;
-    rb.isKinematic = true;
-    GetComponent<Collider2D>().enabled = false;
-
-    
-    Destroy(gameObject, 2f);
+    if (FinalKey != null)
+    {
+        
+        GameObject key = Instantiate(FinalKey, transform.position + Vector3.down * 0.5f, Quaternion.identity);
+    }
 }
+
 
 
     
@@ -104,6 +128,24 @@ public class Scene3Enemy : MonoBehaviour
         hit.GetComponent<PlayerStats>().TakeDamage(attackDamage);
     }
 }
+
+ void RegenerateHealth()
+{
+    if (currentHealth < maxHealth)
+    {
+        currentHealth += healthRegenerationAmount;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        if (healthBar != null)
+        {
+            healthBar.SetHealth(currentHealth);
+        }
+    }
+}
+
 
 
 

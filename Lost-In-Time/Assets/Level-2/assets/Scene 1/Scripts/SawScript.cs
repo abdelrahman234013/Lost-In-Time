@@ -6,7 +6,7 @@ public class SawScript : MonoBehaviour
 {
     [SerializeField] private float movementDistance;
     [SerializeField] private float speed;
-    [SerializeField] private float damage;
+    [SerializeField] private int  damage;
     private bool movingLeft;
     private float leftEdge;
     private float rightEdge;

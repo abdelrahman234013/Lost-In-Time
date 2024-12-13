@@ -32,35 +32,29 @@ public class HealthScript : MonoBehaviour
         playerRespawn = GetComponent<PlayerRespawn>(); // Get the PlayerRespawn component
     }
 
-    public void TakeDamage(float _damage)
+
+    public int health = 100;
+
+    // This method should reduce health
+    public void TakeDamage(int damage)
     {
-        if (invulnerable) return;
-
-        currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
-
-        if (currentHealth > 0)
+        health -= damage;
+        if (health <= 0)
         {
-            anim.SetTrigger("Hurt");
-            StartCoroutine(Invunerability());
-        }
-        else
-        {
-            if (!dead)
-            {
-                // Deactivate all attached component classes
-                foreach (Behaviour component in components)
-                    component.enabled = false;
-
-                anim.SetBool("grounded", true);
-                anim.SetTrigger("Dead");
-
-                dead = true;
-
-                // Notify PlayerRespawn that the player has died and trigger respawn
-                playerRespawn.OnPlayerDeath();
-            }
+            // Handle death (e.g., call death logic)
+            Die();
         }
     }
+
+    private void Die()
+    {
+        Debug.Log("Player Died");
+        // Handle player death logic here
+    }
+
+
+
+
 
     public void AddHealth(float _value)
     {
