@@ -15,17 +15,18 @@ public class PlayerStats : MonoBehaviour
     public bool hasCard = false;
     public bool hasCapsule = false;
     private int coinsCollected = 0;
+    private Animator animator;
     // public TextMeshProUGUI ScoreUI;
     // public Image healthBar;
 
 
-    // Start is called before the first frame update
     void Start()
     {
+        animator = this.gameObject.GetComponent<Animator>();
+
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(this.isImmune == true){
@@ -40,44 +41,79 @@ public class PlayerStats : MonoBehaviour
         
     }
 
-    void SpirteFlicker(){
-        if(this.flickerTime < this.flickerDuration){
-            this.flickerTime = this.flickerTime + Time.deltaTime;
-        } else{
-            spriteRenderer.enabled = !(spriteRenderer.enabled);
-            this.flickerTime = 0;
-        } 
+    void SpirteFlicker()
+{
+    if (animator != null && !this.isImmune)
+    {
+        if (this.flickerTime < this.flickerDuration)
+        {
+            this.flickerTime += Time.deltaTime;
+        }
+        else
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            this.flickerTime = 0f;
+        }
     }
+}
 
-    public void TakeDamage(int damage){
-        if(this.isImmune == false){
-            this.health = this.health - damage;
-            if(this.health < 0){
-                this.health = 0;
-            }
-            if(this.lives > 0 && this.health == 0){
-                FindObjectOfType<LevelManager>().RespawnPlayer();
-                this.health = 6;
-                this.lives--;
-            } else if(this.lives == 0 && this.health == 0){
-                FindObjectOfType<LevelManager>().GameOver();
-                Destroy(this.gameObject);
+   public void TakeDamage(int damage)
+{
+    if (!this.isImmune && health > 0)
+    {
+        this.health -= damage;
+        if (this.health < 0) this.health = 0;
 
-            }
-
-            Debug.Log("Player Health: " + this.health.ToString());
-            // Debug.Log("Player Lives: " + this.lives.ToString());
+        if (this.health == 0 && this.lives > 0)
+        {
+            
+            FindObjectOfType<LevelManager>().RespawnPlayer();
+            this.health = 6;
+            this.lives--;
+        }
+        else if (this.lives == 0 && this.health == 0)
+        {
+            TriggerDeathAnimation();
         }
 
-        PlayHitReaction();
-        // healthBar.fillAmount = this.health/3f;
-        
+        Debug.Log("Player Health: " + this.health.ToString());
     }
 
-    void PlayHitReaction(){
-        this.isImmune = true;
-        this.immuneTime = 0f;
+    PlayHitReaction(); 
+}
+    void TriggerDeathAnimation()
+{
+    if (animator != null)
+    {
+        animator.SetTrigger("Death"); 
     }
+    StartCoroutine(HandleDeath());
+}
+
+IEnumerator HandleDeath()
+{
+    
+    yield return new WaitForSeconds(2f);  
+
+    
+    FindObjectOfType<LevelManager>().GameOver();
+
+
+    Destroy(this.gameObject);
+}
+
+
+    void PlayHitReaction()
+{
+    this.isImmune = true;
+    this.immuneTime = 0f;
+
+    if (animator != null)
+    {
+        animator.ResetTrigger("Hurt");
+        animator.SetTrigger("Hurt");
+    }
+}
 
     public void CollectCoin(int coinValue)
     {

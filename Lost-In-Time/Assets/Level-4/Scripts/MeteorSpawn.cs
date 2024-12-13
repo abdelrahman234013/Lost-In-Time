@@ -34,7 +34,7 @@ public class MeteorSpawn : MonoBehaviour
 
         
         Rigidbody2D rb = meteor.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        if (rb != null&&player!=null)
         {
             
             Vector2 directionToPlayer = (player.position - meteor.transform.position).normalized;

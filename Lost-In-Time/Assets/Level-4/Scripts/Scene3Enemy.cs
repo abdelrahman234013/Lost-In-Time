@@ -52,23 +52,25 @@ public class Scene3Enemy : MonoBehaviour
 
    
     public void LookAtPlayer()
-    {
-        Vector3 flipped = transform.localScale;
-        flipped.z *= -1f;
+{
+    if (player == null) return;
 
-        if (transform.position.x > player.position.x && isFlipped)
-        {
-            transform.localScale = flipped;
-            transform.Rotate(0f, 180f, 0f);
-            isFlipped = false;
-        }
-        else if (transform.position.x < player.position.x && !isFlipped)
-        {
-            transform.localScale = flipped;
-            transform.Rotate(0f, 180f, 0f);
-            isFlipped = true;
-        }
+    Vector3 flipped = transform.localScale;
+    flipped.z *= -1f;
+
+    if (transform.position.x > player.position.x && isFlipped)
+    {
+        transform.localScale = flipped;
+        transform.Rotate(0f, 180f, 0f);
+        isFlipped = false;
     }
+    else if (transform.position.x < player.position.x && !isFlipped)
+    {
+        transform.localScale = flipped;
+        transform.Rotate(0f, 180f, 0f);
+        isFlipped = true;
+    }
+}
 
     
     public void TakeDamage(int damage)
@@ -150,46 +152,50 @@ public class Scene3Enemy : MonoBehaviour
 
 
     void Update()
+{
+    if (player == null || player.GetComponent<PlayerStats>().health <= 0)
     {
-       
-        if (!hasDetectedPlayer && IsPlayerInRange())
-        {
-            if (detectionAudio != null)
-            {
-                detectionAudio.Play(); 
-            }
+        animator.SetBool("IsRunning", false);
+        return; 
+    }
 
-            hasDetectedPlayer = true;
+    if (!hasDetectedPlayer && IsPlayerInRange())
+    {
+        if (detectionAudio != null)
+        {
+            detectionAudio.Play();
         }
+        hasDetectedPlayer = true;
+    }
 
-        
-        if (hasDetectedPlayer && !hasStartedRunning)
+    if (hasDetectedPlayer && !hasStartedRunning)
+    {
+        runTimer += Time.deltaTime;
+        if (runTimer >= runDelay)
         {
-            runTimer += Time.deltaTime;
-            if (runTimer >= runDelay)
-            {
-                hasStartedRunning = true;
-                animator.SetBool("IsRunning", true);
-            }
-        }
-
-        
-        if (hasStartedRunning)
-        {
-            
-            Vector2 targetPosition = new Vector2(player.position.x, rb.position.y);
-            Vector2 newPos = Vector2.MoveTowards(rb.position, targetPosition, speed * Time.deltaTime);
-            rb.MovePosition(newPos);
-
-           
-            LookAtPlayer();
-
-            
-            if (Vector2.Distance(transform.position, player.position) <= attackRange)
-            {
-                Attack();
-                animator.SetTrigger("Attack");
-            }
+            hasStartedRunning = true;
+            animator.SetBool("IsRunning", true);
         }
     }
+
+    if (hasStartedRunning)
+    {
+        Vector2 targetPosition = new Vector2(player.position.x, rb.position.y);
+
+        if (Vector2.Distance(transform.position, player.position) > attackRange)
+        {
+            Vector2 newPos = Vector2.MoveTowards(rb.position, targetPosition, speed * Time.deltaTime);
+            rb.MovePosition(newPos);
+        }
+
+        LookAtPlayer();
+
+       
+        if (Vector2.Distance(transform.position, player.position) <= attackRange)
+        {
+            Attack();
+            animator.SetTrigger("Attack");
+        }
+    }
+}
 }
