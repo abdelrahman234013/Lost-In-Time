@@ -46,7 +46,7 @@ private void OnTriggerEnter2D(Collider2D collision)
     if (collision.CompareTag("Player"))
     {
         // Apply damage to the player (if required)
-        collision.GetComponent<HealthScript>().TakeDamage(damage);
+        collision.GetComponent<Health>().TakeDamage(damage);
 
         // Respawn the player at the last checkpoint (instead of the default respawn)
         FindObjectOfType<PlayerRespawn>().RespawnAtCheckpoint();
