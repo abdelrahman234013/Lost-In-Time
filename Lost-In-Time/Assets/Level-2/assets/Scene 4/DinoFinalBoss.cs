@@ -98,12 +98,7 @@ public class DinoFinalBoss : MonoBehaviour
 
 void FireBullet()
 {
-    if (isFacingRight == Vector3.right){
-        Vector3 fireDirection = Vector3.left;
-    }
-    else {
-        Vector3 fireDirection = Vector3.right;
-    }
+    Vector3 fireDirection = isFacingRight ? Vector3.right : Vector3.left;
 
     // Instantiate the fire bullet at the appropriate position
     GameObject bullet = Instantiate(
