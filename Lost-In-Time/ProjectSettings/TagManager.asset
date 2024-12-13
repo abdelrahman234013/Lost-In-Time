@@ -6,7 +6,16 @@ TagManager:
   tags:
   - Undefined
   - Enemy
+<<<<<<< Updated upstream
   - Wall
+=======
+  - Audio
+  - Spire
+  - Boss
+  - Ladder
+  - fish
+  - Spike
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -14,6 +23,7 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< Updated upstream
   - Ground
   - player
   - 
@@ -37,6 +47,31 @@ TagManager:
   - 
   - 
   - 
+=======
+  - Player
+  - Box
+  - Boss
+  - Background
+  - Foreground
+  - Ladder
+  - Chest
+  - Spike
+  - Trapdoor
+  - Lever
+  - Wall
+  - Transparent wall
+  - Button
+  - Icicle
+  - Platform
+  - Boulder
+  - Sign
+  - Cieling
+  - Camera
+  - Door
+  - Check point
+  - Fish
+  - Enemy
+>>>>>>> Stashed changes
   - 
   - 
   - 
@@ -61,4 +96,7 @@ TagManager:
     locked: 0
   - name: snowball
     uniqueID: 4157978621
+    locked: 0
+  - name: Enemy
+    uniqueID: 2893775697
     locked: 0
