@@ -31,12 +31,14 @@ public class DinoFinalBoss : MonoBehaviour
     public GameObject[] spikes;
     public GameObject JumpPad1;
     public GameObject JumpPad2;
+    public GameObject RewardKey;
 
     void Start()
     {
         transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
         foreach (GameObject spike in spikes){ spike.SetActive(false); }
         JumpPad1.SetActive(false); JumpPad2.SetActive(false);
+        RewardKey.SetActive(false);
     }
 
     public void StartBossFight()
@@ -70,6 +72,7 @@ public class DinoFinalBoss : MonoBehaviour
             isIdle = true;
             transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
             animator.SetBool("IsWalking", false);
+            if (isDead) break;
             yield return new WaitForSeconds(3); // idle
             if (isDead) break;
             animator.SetTrigger("AttackTrigger");
@@ -77,12 +80,14 @@ public class DinoFinalBoss : MonoBehaviour
             foreach (GameObject spike in spikes){ spike.SetActive(true); }
             JumpPad1.SetActive(false); JumpPad2.SetActive(false);
             yield return new WaitForSeconds(1f); // wait before firing
+            if (isDead) break;
             yield return FireMultipleBullets(4, 1.5f);
             if (isDead) break;
             animator.SetTrigger("ReverseAttackTrigger");
             transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
             
             yield return new WaitForSeconds(4f); //wait after fire
+            if (isDead) break;
             foreach (GameObject spike in spikes){ spike.SetActive(false); }
             JumpPad1.SetActive(true); JumpPad2.SetActive(true);
             if (isDead) break;
@@ -193,8 +198,10 @@ void FireBullet()
 
     IEnumerator DisappearAfterDeath()
     {   
+        RewardKey.SetActive(true);
+        foreach (GameObject spike in spikes){ spike.SetActive(false); }
+        JumpPad1.SetActive(true); JumpPad2.SetActive(true);
         WallRight.GetComponent<Collider2D>().isTrigger = true;
-
         yield return new WaitForSeconds(0.8f);
         animator.SetBool("IsDead", true);
         transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
