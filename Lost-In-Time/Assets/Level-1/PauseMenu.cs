@@ -6,11 +6,13 @@ using System.Collections.Generic;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject PausePanel;
+    [SerializeField] AudioSource backgroundMusic;
 
     public void Pause()
     {
         PausePanel.SetActive(true);
         Time.timeScale=0;
+        backgroundMusic.Pause();
 
     }
 
@@ -24,6 +26,7 @@ public class PauseMenu : MonoBehaviour
     {
         PausePanel.SetActive(false);
           Time.timeScale=1;
+        backgroundMusic.Play();
     }
 
     public void Restart()
