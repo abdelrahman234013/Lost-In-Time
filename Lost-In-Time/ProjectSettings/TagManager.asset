@@ -16,6 +16,9 @@ TagManager:
   - Ladder
   - fish
   - Checkpoint
+  - Spike
+  - Water
+  - Bullet
   layers:
   - Default
   - TransparentFX

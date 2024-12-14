@@ -28,10 +28,15 @@ public class DinoFinalBoss : MonoBehaviour
     public Transform WallRight;
 
     public GameObject fireBulletPrefab;
+    public GameObject[] spikes;
+    public GameObject JumpPad1;
+    public GameObject JumpPad2;
 
     void Start()
     {
         transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
+        foreach (GameObject spike in spikes){ spike.SetActive(false); }
+        JumpPad1.SetActive(false); JumpPad2.SetActive(false);
     }
 
     public void StartBossFight()
@@ -65,20 +70,22 @@ public class DinoFinalBoss : MonoBehaviour
             isIdle = true;
             transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
             animator.SetBool("IsWalking", false);
-            yield return new WaitForSeconds(3);
-
-            transform.position = new Vector3(transform.position.x, -0.8f, transform.position.z);
+            yield return new WaitForSeconds(3); // idle
+            if (isDead) break;
             animator.SetTrigger("AttackTrigger");
-
-            FireBullet();
-
-            yield return new WaitForSeconds(3);
-
+            transform.position = new Vector3(transform.position.x, -0.8f, transform.position.z);
+            foreach (GameObject spike in spikes){ spike.SetActive(true); }
+            JumpPad1.SetActive(false); JumpPad2.SetActive(false);
+            yield return new WaitForSeconds(1f); // wait before firing
+            yield return FireMultipleBullets(4, 1.5f);
+            if (isDead) break;
             animator.SetTrigger("ReverseAttackTrigger");
             transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
-            yield return new WaitForSeconds(3);
-
-            isIdle = false;
+            
+            yield return new WaitForSeconds(4f); //wait after fire
+            foreach (GameObject spike in spikes){ spike.SetActive(false); }
+            JumpPad1.SetActive(true); JumpPad2.SetActive(true);
+            if (isDead) break;
             isImmune = false;
             animator.SetBool("IsWalking", true);
 
@@ -92,33 +99,43 @@ public class DinoFinalBoss : MonoBehaviour
             isIdle = true;
 
             transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
-            yield return new WaitForSeconds(3);
         }
+    }
+    
+    IEnumerator FireMultipleBullets(int count, float interval)
+    {
+    for (int i = 0; i < count; i++)
+    {
+        FireBullet();
+        yield return new WaitForSeconds(interval);
+    }
     }
 
 void FireBullet()
 {
-    Vector3 fireDirection = isFacingRight ? Vector3.right : Vector3.left;
+    Vector3 fireDirection = isFacingRight ? Vector3.left : Vector3.right;
 
-    // Instantiate the fire bullet at the appropriate position
-    GameObject bullet = Instantiate(
-        fireBulletPrefab,
-        transform.position + fireDirection * 1.5f,
-        Quaternion.identity
-    );
+    // Slightly lower the bullet by reducing the y coordinate
+    Vector3 bulletPosition = transform.position + fireDirection * 1.5f;
+    bulletPosition.y = -3f;  // Lower the bullet by 0.2 units (adjust this value as needed)
+    // Instantiate the fire bullet at the adjusted position
+    
+    if (isFacingRight){
+        bulletPosition.x -= 4f;  // Decrement x by 10 if facing right
+    }
+    else{
+        bulletPosition.x += 4f;  // Increment x by 10 if facing left
+    }
 
+    GameObject bullet = Instantiate(fireBulletPrefab, bulletPosition, Quaternion.identity);
     // Flip the bullet's sprite if the boss is facing left
     if (!isFacingRight)
     {
-        bullet.transform.localScale = new Vector3(-1, 1, 1);
+        bullet.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     // Assign the movement direction to the bullet's script
-    FireBulletDinoBoss bulletScript = bullet.GetComponent<FireBulletDinoBoss>();
-    if (bulletScript != null)
-    {
-        bulletScript.SetDirection(fireDirection);
-    }
+    bullet.GetComponent<FireBulletDinoBoss>().SetDirection(fireDirection);
 }
 
     IEnumerator MoveToTarget()
@@ -205,4 +222,13 @@ void FireBullet()
             }
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.collider.CompareTag("Player"))
+    {
+        Debug.Log("Player hit by the boss!");
+    }
+}
+
 }

@@ -8,6 +8,14 @@ public class FireBulletDinoBoss : MonoBehaviour
     public float damage = 20f;
     private Vector3 direction;
 
+    public float time = 5f;
+
+    void Start()
+    {
+        // Destroy the bullet after timeToLive seconds
+        Destroy(gameObject, time);
+    }
+
     void Update()
     {
          transform.position += direction * speed * Time.deltaTime;
@@ -27,7 +35,7 @@ public class FireBulletDinoBoss : MonoBehaviour
             //other.GetComponent<HealthScript>().TakeDamage(damage);
             Destroy(gameObject);
         }
-        else if (other.CompareTag("Wall"))
+        else if (other.CompareTag("Ground"))
         {
             Destroy(gameObject);
         }
