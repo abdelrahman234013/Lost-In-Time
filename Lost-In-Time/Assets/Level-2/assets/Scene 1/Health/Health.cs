@@ -27,6 +27,7 @@ public class HealthScript : MonoBehaviour
     [SerializeField] private AudioClip hurtSound;
 
     private PlayerRespawn playerRespawn;
+    private CharcterScript player;
 
     // Reference to the GameManager (or Game script where the GameOver method is)
     private Game gameManager;
@@ -37,6 +38,7 @@ public class HealthScript : MonoBehaviour
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
         spriteRend = GetComponent<SpriteRenderer>();
+        player = GetComponent<CharcterScript>();
         playerRespawn = GetComponent<PlayerRespawn>(); // Get the PlayerRespawn component
         gameManager = FindObjectOfType<Game>(); // Find the GameManager/Game script in the scene
     }
@@ -63,7 +65,7 @@ public class HealthScript : MonoBehaviour
     }
 
     private void Die()
-    {
+    {   
         Debug.Log("Player Died");
 
         anim.SetTrigger("Dead"); // Trigger death animation

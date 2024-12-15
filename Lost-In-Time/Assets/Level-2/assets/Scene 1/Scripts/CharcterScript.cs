@@ -6,9 +6,15 @@ using UnityEngine.UI;
 public class CharcterScript : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float jump;
     private Rigidbody2D body;
     private Animator anim;
     private bool grounded;
+    public Transform groundCheck;
+    public float groundCheckRadius;
+    public LayerMask whatIsGround;
+    public GameObject RestartButton;
+    public AudioClip collectSound;
 
     public int stonesCollected = 0;
     public Text stonesText;
@@ -18,13 +24,25 @@ public class CharcterScript : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         UpdateStoneCountUI();
+        if (RestartButton != null){
+            RestartButton.SetActive(false);
+        }
+    }
+
+    public GameObject getButton(){
+        if (RestartButton != null){
+            return RestartButton;
+        }
+        return null;
+    }
+
+    void FixedUpdate(){
+        grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
 
     void Update()
     {
-        if (anim.GetBool("dead")) return;  // If the character is dead, stop updating
-
-        // Handle movement
+    
         float horizontalInput = Input.GetAxis("Horizontal");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
@@ -44,7 +62,7 @@ public class CharcterScript : MonoBehaviour
 
     private void Jump()
     {
-        body.velocity = new Vector2(body.velocity.x, speed);
+        body.velocity = new Vector2(body.velocity.x, jump);
         anim.SetTrigger("jump");
         grounded = false;
     }
@@ -66,6 +84,9 @@ public class CharcterScript : MonoBehaviour
 
     public void CollectStone()
     {
+        if (collectSound != null){
+        AudioManagerScript.instance.PlaySingle(collectSound);
+        }
         stonesCollected++;
         UpdateStoneCountUI();
     }

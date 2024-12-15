@@ -4,50 +4,52 @@ using UnityEngine;
 
 public class EnemyControllerS1 : MonoBehaviour
 {
-   public bool isFacingRight = false;
+    public bool isFacingRight = false;
     public float maxSpeed = 3f;
     public int damage = 6;
-    public Sprite spriteRight; // Assign the right-facing sprite in the Inspector
-    public Sprite spriteLeft;  // Assign the left-facing sprite in the Inspector
+    public AudioClip hit1;
+    public AudioClip hit2;
+    //public GameObject snowballPrefab; // Prefab of the snowball
+   // public Transform snowballSpawnPoint; // Spawn point for the snowball
+    private GameObject player;
+    private float timer;
 
-    private SpriteRenderer spriteRenderer;
-
-    // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
-        UpdateSprite(); // Set the initial sprite
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    void Update()
+    {
+       /* float distance = Vector2.Distance(transform.position, player.transform.position);
+        if (distance < 4)
+        {
+            timer += Time.deltaTime;
+            if (timer > 2)
+            {
+                timer = 0;
+                Shoot();
+            }
+        }*/
     }
 
     public void Flip()
     {
-        isFacingRight = !isFacingRight; // Toggle the direction
-        UpdateSprite(); // Update the sprite when flipping
-        transform.localScale = new Vector3(
-            -transform.localScale.x, 
-            transform.localScale.y, 
-            transform.localScale.z
-        );
-    }
-
-    private void UpdateSprite()
-    {
-        // Update the sprite based on the current direction
-        if (isFacingRight)
-        {
-            spriteRenderer.sprite = spriteRight;
-        }
-        else
-        {
-            spriteRenderer.sprite = spriteLeft;
-        }
+        isFacingRight = !isFacingRight;
+        transform.localScale = new Vector3(-(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.tag == "Player")
         {
+            AudioManagerScript.instance.RandomizeSfx(hit1, hit2);
             FindObjectOfType<PlayerStatsIceS1>().TakeDamage(damage);
         }
     }
+
+   /* void Shoot()
+    {
+        GameObject snowball = Instantiate(snowballPrefab, snowballSpawnPoint.position, Quaternion.identity);
+    }*/
 }

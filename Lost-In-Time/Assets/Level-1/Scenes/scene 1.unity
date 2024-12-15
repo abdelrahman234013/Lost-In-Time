@@ -8040,7 +8040,7 @@ MonoBehaviour:
   Target: {fileID: 7483143939178994952}
   Cameraspeed: 4
   minX: 1
-  maxX: 62
+  maxX: 65
   minY: 2
   MaxY: 3
 --- !u!1 &545341588
@@ -8478,7 +8478,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5c483f9ff173dba49b459f9faaffd5cc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.496
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -10682,11 +10682,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3276746618979977378, guid: d093d7fc17e5c3c45ae84bb5a0a92aef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.66
+      value: 50.79
       objectReference: {fileID: 0}
     - target: {fileID: 3276746618979977378, guid: d093d7fc17e5c3c45ae84bb5a0a92aef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.32
+      value: -1.94
       objectReference: {fileID: 0}
     - target: {fileID: 3276746618979977378, guid: d093d7fc17e5c3c45ae84bb5a0a92aef, type: 3}
       propertyPath: m_LocalPosition.z
