@@ -27,11 +27,6 @@ public class PlayerRespawn : MonoBehaviour
             lives--; // Deduct the last life
             RespawnAtCheckpoint(); // Respawn the player at the last checkpoint
         }
-        else
-        {
-            // Player has no lives left, handle game over here if necessary
-            Debug.Log("Game Over");
-        }
     }
 
     // Respawn the player at the last checkpoint
@@ -42,10 +37,6 @@ public class PlayerRespawn : MonoBehaviour
             // Respawn the player at the last checkpoint's position
             transform.position = flagscript.lastCheckpointPosition;
             playerHealth.Respawn(); // Restore player health and reset animation
-        }
-        else
-        {
-            Debug.LogWarning("No checkpoint found!");
         }
     }
 

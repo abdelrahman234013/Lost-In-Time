@@ -7,20 +7,27 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private Health playerHealth;
-    [SerializeField] private Image totalhealthBar;
-    [SerializeField] private Image currenthealthBar;
+    [SerializeField] private HealthScript playerHealth;
+    [SerializeField] private Image HeartsBackGround;
+    [SerializeField] private Image RedHearts;
+    [SerializeField] private Image BlackBar;
+    [SerializeField] private Image RedBar;
+    [SerializeField] private Image GreenBar;
 
     void Start()
     {
-        totalhealthBar.fillAmount = playerHealth.currentHealth / 10;
+        HeartsBackGround.fillAmount = playerHealth.remainingLives / 10f;
+        BlackBar.fillAmount = playerHealth.currentHealth / 10f;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        currenthealthBar.fillAmount = playerHealth.currentHealth / 10;
+        GreenBar.fillAmount = playerHealth.currentHealth / 3f;
+        RedHearts.fillAmount = playerHealth.remainingLives / 10f;
     }
 
 }
+
 

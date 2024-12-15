@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public AudioClip audio;
     void Start()
     {
         
@@ -20,6 +20,7 @@ public class Card : MonoBehaviour
         if (other.tag == "Player") {
             FindObjectOfType<PlayerStats>().hasCard = true;
             Destroy(this.gameObject);
+            AudioManager2.instance.PlaySingle(audio);
         }
     }
 }

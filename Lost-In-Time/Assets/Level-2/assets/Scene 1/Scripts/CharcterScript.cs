@@ -14,7 +14,6 @@ public class CharcterScript : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask whatIsGround;
     public GameObject RestartButton;
-    public AudioClip collectSound;
 
     public int stonesCollected = 0;
     public Text stonesText;
@@ -84,9 +83,6 @@ public class CharcterScript : MonoBehaviour
 
     public void CollectStone()
     {
-        if (collectSound != null){
-        AudioManagerScript.instance.PlaySingle(collectSound);
-        }
         stonesCollected++;
         UpdateStoneCountUI();
     }
