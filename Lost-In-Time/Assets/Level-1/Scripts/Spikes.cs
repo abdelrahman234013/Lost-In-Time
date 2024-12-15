@@ -24,6 +24,10 @@ public class Spikes : MonoBehaviour
             // Call the method that handles the player's damage
   
             FindObjectOfType<PlayerStats>().TakeDamage(damage);
+            FindObjectOfType<LevelManager>().RespawnPlayer();
         }
     }
+
+
+    
 }

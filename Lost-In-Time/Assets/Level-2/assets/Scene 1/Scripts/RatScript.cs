@@ -33,16 +33,37 @@ public class RatScript : MonoBehaviour
     }
 
     // Detect collision with the player and apply damage
-    private void OnTriggerEnter2D(Collider2D collision)
+private void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("enemy"))
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("enemy")){
-            Flip();
-        }
-        
-        if (collision.CompareTag("Player"))
+        Flip();
+    }
+
+    if (collision.gameObject.CompareTag("Player"))
+    {
+        // Debug log to check if Health component is found
+        Health playerHealth = collision.gameObject.GetComponent<Health>();
+        if (playerHealth != null)
         {
-            collision.GetComponent<Health>().TakeDamage(damage);
+            Debug.Log("Player Health component found!");
+            playerHealth.TakeDamage(damage);
+        }
+        else
+        {
+            Debug.LogWarning("Health component not found on player!");
+        }
+
+        Flip();
+    }
+}
+
+private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("enemy"))
+        {
             Flip();
         }
     }
+
 }

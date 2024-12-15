@@ -4,25 +4,35 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-     public GameObject CurrentCheckPoint;
 
-    // Start is called before the first frame update
+    
+    public GameObject CurrentCheckPoint;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-    public void RespawnPlayer(){
-        FindObjectOfType<CharacterMovements>().transform.position = CurrentCheckPoint.transform.position;
+    public void RespawnPlayer()
+    {
+        if (CurrentCheckPoint != null)
+        {
+            FindObjectOfType<CharacterMovements>().transform.position = CurrentCheckPoint.transform.position;
+        }
+        else
+        {
+            Debug.LogError("CurrentCheckPoint is not assigned in the LevelManager.");
+        }
     }
 
-    public void GameOver() {
+    public void GameOver()
+    {
         Debug.Log("Game Over");
     }
 }
+

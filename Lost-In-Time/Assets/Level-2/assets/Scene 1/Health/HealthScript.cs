@@ -40,6 +40,10 @@ public class Health : MonoBehaviour
                 anim.SetTrigger("die");
                 GetComponent<CharcterScript>().enabled = false;
                 dead = true;
+ 
+                if (GetComponent<CharcterScript>().getButton() != null){
+                GetComponent<CharcterScript>().getButton().SetActive(true);
+        }
             }
         }
     }

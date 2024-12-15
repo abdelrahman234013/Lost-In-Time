@@ -14,10 +14,12 @@ public class CharacterMovements : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask whatIsGround;
     public Animator animator;
-    private bool grounded;  
-    // public KeyCode Return;
-    // public Transform firepoint;
-    // public GameObject bullet;
+    private bool grounded;
+    public KeyCode E;
+    public Transform firepoint;
+    public GameObject bullet;
+    public AudioSource shootSound;   
+    
 
 
 
@@ -57,15 +59,19 @@ animator.SetFloat("Speed",Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
         }
 
 
-        // if(Input.GetKeyDown(Return)){
-        //     Shoot();
-        // }
+         if(Input.GetKeyDown(E)){
+             Shoot();
+         }
         
     }
 
-    // public void Shoot(){
-    //     Instantiate(bullet,firepoint.position, firepoint.rotation);
-    // }
+    public void Shoot(){
+         Instantiate(bullet,firepoint.position, firepoint.rotation);
+          if (shootSound != null)
+        {
+            shootSound.Play();
+        }
+    }
     void Jump(){
         GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
     }
