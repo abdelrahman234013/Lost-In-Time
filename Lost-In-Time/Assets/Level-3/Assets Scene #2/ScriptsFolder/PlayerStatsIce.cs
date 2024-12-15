@@ -13,6 +13,7 @@ public class PlayerStatsIce : MonoBehaviour
     private float immunityTime = 0f;
     public float immunityDuration = 1.5f;
     public int fishCollected = 0;
+    public int potionsCollected = 0;
     public AudioClip deathSound;
 
     // Start is called before the first frame update
@@ -89,5 +90,9 @@ public class PlayerStatsIce : MonoBehaviour
     public void Collectedfish(int fishValue)
     {
         this.fishCollected = this.fishCollected + fishValue;
+    }
+     public void Collectedpotion(int potionValue)
+    {
+        this.potionsCollected = this.potionsCollected + potionValue;
     }
 }
