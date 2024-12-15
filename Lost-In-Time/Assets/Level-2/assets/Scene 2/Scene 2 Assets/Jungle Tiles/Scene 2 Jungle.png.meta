@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -7215,7 +7215,6 @@ TextureImporter:
     nameFileIdTable:
       jungle tileset_65: 1876859847
       jungle tileset_34: 1998279372
-      jungle tileset_189: -978078613
       jungle tileset_52: -1880802744
       jungle tileset_72: 108810180
       jungle tileset_64: -1581950281
@@ -7229,6 +7228,7 @@ TextureImporter:
       jungle tileset_292: 835068060
       jungle tileset_20: 611730820
       jungle tileset_90: -214359188
+      jungle tileset_61: -570270577
       jungle tileset_242: -1698274011
       jungle tileset_325: 317543487
       jungle tileset_334: -1476221063
@@ -7295,8 +7295,8 @@ TextureImporter:
       jungle tileset_165: 434810826
       jungle tileset_151: 1867995138
       jungle tileset_244: -87136351
-      jungle tileset_14: 1554183226
       jungle tileset_4: 763641176
+      jungle tileset_14: 1554183226
       jungle tileset_74: 891130199
       jungle tileset_66: -1525919798
       jungle tileset_298: -1250230703
@@ -7546,10 +7546,10 @@ TextureImporter:
       jungle tileset_271: -1410329260
       jungle tileset_310: -1397080348
       jungle tileset_80: 1943979318
-      jungle tileset_239: 1477687381
       jungle tileset_314: -1601263370
-      jungle tileset_61: -570270577
       jungle tileset_211: 1950105148
+      jungle tileset_189: -978078613
+      jungle tileset_239: 1477687381
       jungle tileset_132: 1168980660
   spritePackingTag: 
   pSDRemoveMatte: 0

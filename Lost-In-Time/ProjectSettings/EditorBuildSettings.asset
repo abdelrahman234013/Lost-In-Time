@@ -20,4 +20,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level-2/Scenes/scene 2.unity
     guid: 738405774dceab7479251294543bec91
+  - enabled: 1
+    path: Assets/Level-2/Scenes/Scene 3 Updated.unity
+    guid: 15b773b16a7870f46b0a1caea679bacd
+  - enabled: 1
+    path: Assets/Level-2/Scenes/Scene4.unity
+    guid: 141738989d44f30448a7c633d5ebfc30
+  - enabled: 1
+    path: Assets/Level-3/Assets scene#1/Scene 1.unity
+    guid: 0c5a84f96a6387643bd1a2c5f247696a
+  - enabled: 1
+    path: Assets/Level-3/Assets Scene #2/Scene #2.unity
+    guid: 8808741c2dfbb5643b4ca653e67e33e9
+  - enabled: 1
+    path: Assets/Level-3/assets scene #3/scene 3.unity
+    guid: 973a628eba1f0d94c89ea886f9af5740
+  - enabled: 1
+    path: Assets/Level-4/Scenes/Lab-Scene.unity
+    guid: 489c8c6bc014f1445a1343a578254b11
+  - enabled: 1
+    path: Assets/Level-4/Scenes/New Scene.unity
+    guid: 797dfdcd5044ab04499cc666bab42c51
+  - enabled: 1
+    path: Assets/Level-4/Scenes/Scene 3  Final Fight.unity
+    guid: d8cebe96a6f972f498ff9e74ddf7e9bd
   m_configObjects: {}
