@@ -28,26 +28,26 @@ TagManager:
   - UI
   - Player
   - Box
-  - Boss
-  - Background
-  - Foreground
-  - Ladder
-  - Chest
-  - Spike
-  - Trapdoor
-  - Lever
-  - Wall
-  - Transparent wall
-  - Button
-  - Icicle
-  - Platform
-  - Boulder
-  - Sign
-  - Cieling
-  - Camera
-  - Door
-  - Check point
-  - Fish
+  - Enemy
+  - Reject
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -74,17 +74,11 @@ TagManager:
   - name: background6
     uniqueID: 3248327589
     locked: 0
-  - name: background7
-    uniqueID: 1236657393
+  - name: building
+    uniqueID: 2551588161
     locked: 0
-  - name: background8
-    uniqueID: 2965749815
-    locked: 0
-  - name: background9
-    uniqueID: 2218839925
-    locked: 0
-  - name: background10
-    uniqueID: 1152562141
+  - name: spinning trap
+    uniqueID: 3386463939
     locked: 0
   - name: Platform
     uniqueID: 3881619975

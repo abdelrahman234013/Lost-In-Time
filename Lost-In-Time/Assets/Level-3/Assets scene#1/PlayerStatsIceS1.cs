@@ -13,7 +13,7 @@ public class PlayerStatsIceS1 : MonoBehaviour
     private float immunityTime = 0f;
     public float immunityDuration = 1.5f;
     public int shardsCollected = 0;
-    public int keyCollected = 0;
+    public bool keyCollected = false;
     public AudioClip deathSound;
     //public TextMeshProUGUI ScoreUi;
 
@@ -93,9 +93,9 @@ public class PlayerStatsIceS1 : MonoBehaviour
         this.shardsCollected = this.shardsCollected + shardValue;
     }
 
-     public void CollectedKey(int keyValue)
+     public void CollectedKey()
     {
-        this.keyCollected = this.keyCollected + keyValue;
+        this.keyCollected = true;
     }
 }
 
