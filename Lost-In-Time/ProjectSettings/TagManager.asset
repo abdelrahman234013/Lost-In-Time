@@ -161,3 +161,9 @@ TagManager:
   - name: Player
     uniqueID: 3376456073
     locked: 0
+  - name: Enemy
+    uniqueID: 822993871
+    locked: 0
+  - name: Spear
+    uniqueID: 2424013899
+    locked: 0
