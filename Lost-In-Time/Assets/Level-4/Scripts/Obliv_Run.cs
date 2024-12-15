@@ -26,11 +26,11 @@ override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInf
 {
     boss.LookAtPlayer();
     
-    
+   
     float distanceToPlayer = Vector2.Distance(player.position, rb.position);
     
     
-    if (distanceToPlayer > attackRange)
+    if (distanceToPlayer > attackRange + 0.5f)
     {
         Vector2 target = new Vector2(player.position.x, rb.position.y);
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
@@ -38,6 +38,7 @@ override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInf
     }
     else
     {
+        
         rb.velocity = Vector2.zero;
     }
 
