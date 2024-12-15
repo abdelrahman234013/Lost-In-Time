@@ -26,7 +26,7 @@ public class StoneScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // Damage the player
-            collision.GetComponent<Health>().TakeDamage(damage);
+            collision.GetComponent<HealthScript>().TakeDamage(damage);
         }
         // Check if the stone hits an object tagged as "Ground"
         else if (collision.CompareTag("Ground"))
