@@ -6,86 +6,39 @@ using TMPro;
 
 public class NPC : MonoBehaviour
 {
-   public GameObject dialoguePanel;
-   public TextMeshProUGUI dialogueText;
-   public string[] dialogue;
-   private int index;
-   public float wordSpeed;
-   public bool playerIsClose;
-   public GameObject contButton;
+     public Dialogue dialogueManager; // a variable that stores the Dialogue script that is attached to the Dialogue Manager gameobject
+
+    // Use this for Initialization
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && playerIsClose)
-        {
-            if(dialoguePanel.activeInHierarchy)
-            {
-               zeroText();
-            }
-            else
-            {
-                dialoguePanel.SetActive(true);
-                StartCoroutine(Typing());
-            }
-        }
 
-        if(dialogueText.text == dialogue[index])
-        {
-            contButton.SetActive(true);
-        }
     }
 
-    public void zeroText()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        dialogueText.text = "";
-        index = 0;
-        dialoguePanel.SetActive(false);
-    }
-
-    IEnumerator Typing()
-    {
-        foreach(char letter in dialogue[index].ToCharArray())
+        if (other.tag == "Player") // if the player is the one that triggers the collider, then
         {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(wordSpeed);
+            string[] dialogue = {
+                "TARS: Congratulation Jack for reaching this far!",
+                "Jack: Who Are You!",
+                "TARS: I'm a security robot programmed to protect research facilities from intruders in HYDRA.",
+                "TARS: But After what oblivion did, I developed advanced combat skills and tried to take oblivion down but I couldn't",
+                "TARS: so I developed a weapon that can kill Oblivion and ready to assist any one that is worthy to take him down.",
+                "TARS: And by reaching this level, you are a worthy worrior Jack!",
+                "Jack: who is Oblivion?",
+                "TARS: Oblivion Is the Destroyer of this world, anyone that tries to bring our technology back he kills him immediately",
+                "TARS: Now get the Weapon and Go get 'em, Tiger!"
+            }; // specify the dialogue between the player and the character (Flower)
+
+            dialogueManager.SetSentences(dialogue); // set the sentences array in the Dialogue script to above array
+            dialogueManager.StartCoroutine(dialogueManager.TypeDialogue()); // start the coroutine of TypeDialogue(), which in turn starts the dialogue
         }
     }
 
-    public void NextLine()
-    {
-           contButton.SetActive(false);
-
-        if(index < dialogue.Length - 1)
-        {
-            index++;
-            dialogueText.text = "";
-            StartCoroutine(Typing());
-        }
-        else
-        {
-            zeroText();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerIsClose = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerIsClose = false;
-            zeroText();
-        }
-    }
 }

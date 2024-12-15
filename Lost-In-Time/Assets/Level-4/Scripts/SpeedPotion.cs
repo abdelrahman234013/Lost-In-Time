@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpeedPotion : MonoBehaviour
 {
+
+    public AudioClip potion;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class SpeedPotion : MonoBehaviour
         if (other.tag == "Player") {
             FindObjectOfType<CharacterMovements>().moveSpeed += 5;
             Destroy(this.gameObject);
+            AudioManager2.instance.PlaySingle(potion);
         }
     }
 }

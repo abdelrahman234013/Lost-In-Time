@@ -5,7 +5,7 @@ using UnityEngine;
 public class Traps : MonoBehaviour
 {
 
-    public int Damage = 6;
+    public int Damage = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class Traps : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            FindObjectOfType<PlayerStats>().TakeDamage(Damage);
+            FindObjectOfType<PlayerStats2>().TakeDamage(Damage);
         }
     }
 }
