@@ -696,6 +696,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5964622285072287598, guid: a6d27c95c813f084bb8f3565eb191bc1, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1de52423e7ca70c4fbe06ec6271de28e, type: 2}
     - target: {fileID: 5964622285072287599, guid: a6d27c95c813f084bb8f3565eb191bc1, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1263,11 +1267,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7483143939187110111, guid: 75069b024b94eb844aac6df381110a16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.1
+      value: 57.1
       objectReference: {fileID: 0}
     - target: {fileID: 7483143939187110111, guid: 75069b024b94eb844aac6df381110a16, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7483143939187110111, guid: 75069b024b94eb844aac6df381110a16, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2379,8 +2383,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 1220968137}
   Cameraspeed: 4
-  minX: 0
-  maxX: 49
+  minX: -7
+  maxX: 54.5
   minY: 0
   MaxY: 1.5
 --- !u!114 &1373798939
