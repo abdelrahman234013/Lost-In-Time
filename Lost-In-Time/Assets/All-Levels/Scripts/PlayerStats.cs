@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;  // Corrected this line
 
 public class PlayerStats : MonoBehaviour
 {
@@ -16,14 +18,11 @@ public class PlayerStats : MonoBehaviour
     public bool hasCapsule = false;
     private int coinsCollected = 0;
     private Animator animator;
-    // public TextMeshProUGUI ScoreUI;
-    // public Image healthBar;
-
+    public TextMeshProUGUI ScoreUI;  // Corrected this line
 
     void Start()
     {
         animator = this.gameObject.GetComponent<Animator>();
-
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
     }
 
@@ -38,86 +37,79 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
-        
+        ScoreUI.text = ""+coinsCollected;
     }
 
     void SpirteFlicker()
-{
-    if (animator != null && !this.isImmune)
     {
-        if (this.flickerTime < this.flickerDuration)
+        if (animator != null && !this.isImmune)
         {
-            this.flickerTime += Time.deltaTime;
-        }
-        else
-        {
-            spriteRenderer.enabled = !spriteRenderer.enabled;
-            this.flickerTime = 0f;
+            if (this.flickerTime < this.flickerDuration)
+            {
+                this.flickerTime += Time.deltaTime;
+            }
+            else
+            {
+                spriteRenderer.enabled = !spriteRenderer.enabled;
+                this.flickerTime = 0f;
+            }
         }
     }
-}
 
-   public void TakeDamage(int damage)
-{
-    if (!this.isImmune && health > 0)
+    public void TakeDamage(int damage)
     {
-        this.health -= damage;
-        if (this.health < 0) this.health = 0;
-
-        if (this.health == 0 && this.lives > 0)
+        if (!this.isImmune && health > 0)
         {
-            
-            FindObjectOfType<LevelManager>().RespawnPlayer();
-            this.health = 6;
-            this.lives--;
-        }
-        else if (this.lives == 0 && this.health == 0)
-        {
-            TriggerDeathAnimation();
+            this.health -= damage;
+            if (this.health < 0) this.health = 0;
+
+            if (this.health == 0 && this.lives > 0)
+            {
+                FindObjectOfType<LevelManager>().RespawnPlayer();
+                this.health = 6;
+                this.lives--;
+            }
+            else if (this.lives == 0 && this.health == 0)
+            {
+                TriggerDeathAnimation();
+            }
+
+            Debug.Log("Player Health: " + this.health.ToString());
         }
 
-        Debug.Log("Player Health: " + this.health.ToString());
+        PlayHitReaction(); 
     }
 
-    PlayHitReaction(); 
-}
     void TriggerDeathAnimation()
-{
-    if (animator != null)
     {
-        animator.SetTrigger("Death"); 
+        if (animator != null)
+        {
+            animator.SetTrigger("Death"); 
+        }
+        StartCoroutine(HandleDeath());
     }
-    StartCoroutine(HandleDeath());
-}
 
-IEnumerator HandleDeath()
-{
-    
-    yield return new WaitForSeconds(2f);  
-
-    
-    FindObjectOfType<LevelManager>().GameOver();
-
-
-    Destroy(this.gameObject);
-}
-
+    IEnumerator HandleDeath()
+    {
+        yield return new WaitForSeconds(2f);  
+        FindObjectOfType<LevelManager>().GameOver();
+        Destroy(this.gameObject);
+    }
 
     void PlayHitReaction()
-{
-    this.isImmune = true;
-    this.immuneTime = 0f;
-
-    if (animator != null)
     {
-        animator.ResetTrigger("Hurt");
-        animator.SetTrigger("Hurt");
+        this.isImmune = true;
+        this.immuneTime = 0f;
+
+        if (animator != null)
+        {
+            animator.ResetTrigger("Hurt");
+            animator.SetTrigger("Hurt");
+        }
     }
-}
 
     public void CollectCoin(int coinValue)
     {
         this.coinsCollected = this.coinsCollected + coinValue;
     }
 }
-
