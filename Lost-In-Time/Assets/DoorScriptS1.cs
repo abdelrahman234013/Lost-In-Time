@@ -9,14 +9,18 @@ public class DoorUnlock : MonoBehaviour
 
     private bool isUnlocked = false; // Prevents multiple unlocks
 
-    void OnTriggerEnter2D(Collider2D other)
+
+
+
+
+/*    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.tag("Player"))
         {
             // Access the player's stats to check key count
-            PlayerStatsIceS1 playerStats = other.GetComponent<PlayerStatsIceS1>();
+           // PlayerStatsIceS1 playerStats = other.GetComponent<PlayerStatsIceS1>();
 
-            if (playerStats != null && playerStats.keyCollected >= requiredKeys && !isUnlocked)
+            if (FindObjectOfType<PlayerStatsIceS1>() != null &&FindObjectOfType<PlayerStatsIceS1>().keyCollected = requiredKeys && !isUnlocked)
             {
                 UnlockDoor();
             }
@@ -41,5 +45,18 @@ public class DoorUnlock : MonoBehaviour
         Destroy(gameObject);
 
         Debug.Log("Door Unlocked and removed!");
+    } */
+
+ void update(){
+    if(FindObjectOfType<PlayerStatsIceS1>().keyCollected == true){
+        Destroy(this.gameObject);
     }
+ }
+
+ void OnTriggerEnter2D(Collider2D other){
+    if(FindObjectOfType<PlayerStatsIceS1>().keyCollected && other.tag == "Player"){
+        Destroy(this.gameObject);
+    }
+ }
+
 }
