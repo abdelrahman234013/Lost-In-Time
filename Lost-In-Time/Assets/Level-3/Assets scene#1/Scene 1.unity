@@ -925,8 +925,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1673414621
-  m_SortingLayer: 38
+  m_SortingLayerID: 822993871
+  m_SortingLayer: 36
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 90e3f2f70e1810f48b26d9b58f79661d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2246,8 +2246,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 5680763
-  m_SortingLayer: 37
+  m_SortingLayerID: -981043457
+  m_SortingLayer: 18
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e1fcff6538df5934a959072c8a629420, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3218,8 +3218,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 5680763
-  m_SortingLayer: 37
+  m_SortingLayerID: -981043457
+  m_SortingLayer: 18
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e1fcff6538df5934a959072c8a629420, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -27304,7 +27304,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  Return: 114
+  Return: 13
   firepoint: {fileID: 998400967}
   bullet: {fileID: 6050307268977182475, guid: 2b4528af7b5a5ee40b8a74e4d5864dee, type: 3}
   jump1: {fileID: 0}
@@ -35205,8 +35205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773c95e5fc95a914b9642947b52da445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  player: {fileID: 0}
 --- !u!1 &2061313162
 GameObject:
   m_ObjectHideFlags: 0
@@ -36698,11 +36696,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 627069445245233137, guid: e14df3f924de8af44bd39554dfe84532, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.79
+      value: -32.38
       objectReference: {fileID: 0}
     - target: {fileID: 627069445245233137, guid: e14df3f924de8af44bd39554dfe84532, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03000021
+      value: -1.49
       objectReference: {fileID: 0}
     - target: {fileID: 627069445245233137, guid: e14df3f924de8af44bd39554dfe84532, type: 3}
       propertyPath: m_LocalPosition.z

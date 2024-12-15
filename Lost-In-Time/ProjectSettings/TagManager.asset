@@ -17,11 +17,8 @@ TagManager:
   - fish
   - Checkpoint
   - Spike
-<<<<<<< Updated upstream
   - Water
   - Bullet
-=======
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -51,7 +48,7 @@ TagManager:
   - Door
   - Check point
   - Fish
-  - snowman
+  - 
   - 
   - 
   - 
@@ -164,15 +161,9 @@ TagManager:
   - name: Player
     uniqueID: 3376456073
     locked: 0
+  - name: Enemy
+    uniqueID: 822993871
+    locked: 0
   - name: Spear
-    uniqueID: 660450205
-    locked: 0
-  - name: wall
-    uniqueID: 5680763
-    locked: 0
-  - name: snowman
-    uniqueID: 1673414621
-    locked: 0
-  - name: snowball
-    uniqueID: 1599848477
+    uniqueID: 2424013899
     locked: 0
