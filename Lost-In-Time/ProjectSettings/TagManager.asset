@@ -19,6 +19,7 @@ TagManager:
   - Spike
   - Water
   - Bullet
+  - potion
   layers:
   - Default
   - TransparentFX
@@ -48,7 +49,7 @@ TagManager:
   - Door
   - Check point
   - Fish
-  - 
+  - potion
   - 
   - 
   - 
@@ -166,4 +167,7 @@ TagManager:
     locked: 0
   - name: Spear
     uniqueID: 2424013899
+    locked: 0
+  - name: potion
+    uniqueID: 1920331553
     locked: 0
