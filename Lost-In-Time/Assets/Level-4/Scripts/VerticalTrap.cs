@@ -8,6 +8,7 @@ public class VerticalTrap : MonoBehaviour
     private bool isActive = false; // Whether the trap is active (deals damage)
     public float workingTimeStart = 0.0f; // Time in the animation when it starts working
     public float workingTimeEnd = 0.5f; // Time in the animation when it stops working
+    
 
     private void Start()
     {
@@ -26,9 +27,6 @@ public class VerticalTrap : MonoBehaviour
 
         // Check if the animation time is within the "working" period
         isActive = animationTime >= workingTimeStart && animationTime <= workingTimeEnd;
-
-        // Debug log to check the trap's state based on animation time
-        Debug.Log("Trap is " + (isActive ? "ACTIVE" : "INACTIVE"));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,7 +39,6 @@ public class VerticalTrap : MonoBehaviour
             if (playerStats != null)
             {
                 playerStats.TakeDamage(6); // Deal damage to the player
-                Debug.Log("Trap activated! Player damaged.");
             }
         }
     }

@@ -9,11 +9,11 @@ public class BirdThrow : MonoBehaviour
     public Transform throwPoint;      // Point from where the stone will be thrown (in front of the bird)
 
     private Rigidbody rb;             // Bird's Rigidbody to check movement
-    private int stonesThrown = 10;     // Keep track of how many stones the bird has thrown
-    public int maxStones = 20;         // Max number of stones the bird can throw before needing to "reload"
+    private int stonesThrown = 0;     // Keep track of how many stones the bird has thrown
+    public int maxStones = 10;        // Max number of stones the bird can throw before needing to "reload"
     public float throwInterval = 0.1f;  // Interval between throws (in seconds)
     
-    public float reloadTime = 0.1f;     // Time before the bird can throw again (reload time)
+    public float reloadTime = 2f;     // Time before the bird can throw again (reload time)
     
     private bool isMoving = false;    // To track whether the bird is moving or not
 
@@ -51,13 +51,22 @@ public class BirdThrow : MonoBehaviour
     {
         while (stonesThrown < maxStones)  // Continue throwing until max stones are thrown
         {
-            // Wait for the specified throw interval
-            yield return new WaitForSeconds(throwInterval);
-
-            // Check if the bird is moving before throwing
-            if (isMoving)
+            // Check if the bird is still alive (not destroyed)
+            if (this.gameObject != null)
             {
-                ThrowStone();  // Call the method to throw a stone
+                // Wait for the specified throw interval
+                yield return new WaitForSeconds(throwInterval);
+
+                // Check if the bird is moving before throwing
+                if (isMoving)
+                {
+                    ThrowStone();  // Call the method to throw a stone
+                }
+            }
+            else
+            {
+                Debug.LogError("Bird has been destroyed! Stopping stone throw coroutine.");
+                yield break;  // Stop the coroutine if the bird is destroyed
             }
         }
 
@@ -68,31 +77,34 @@ public class BirdThrow : MonoBehaviour
     // Method to throw a stone
     public void ThrowStone()
     {
-        // Instantiate the stone at the throw point position with no rotation
-        GameObject stone = Instantiate(stonePrefab, throwPoint.position, Quaternion.identity);
-
-        // Get the Rigidbody component of the stone to apply force
-        Rigidbody rbStone = stone.GetComponent<Rigidbody>();
-
-        if (rbStone != null) // Ensure the stone has a Rigidbody before applying force
+        if (this.gameObject != null) // Ensure the bird has not been destroyed
         {
-            // Apply a forward force to the stone (toward where the bird is facing)
-            Vector3 throwDirection = transform.forward;  // Bird's forward direction
-            rbStone.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+            // Instantiate the stone at the throw point position with no rotation
+            GameObject stone = Instantiate(stonePrefab, throwPoint.position, Quaternion.identity);
 
-            // Optionally, add a small upward force to give the stone an arc-like motion
-            rbStone.AddForce(Vector3.up * 2f, ForceMode.Impulse);
+            // Get the Rigidbody component of the stone to apply force
+            Rigidbody rbStone = stone.GetComponent<Rigidbody>();
+
+            if (rbStone != null) // Ensure the stone has a Rigidbody before applying force
+            {
+                // Apply a forward force to the stone (toward where the bird is facing)
+                Vector3 throwDirection = transform.forward;  // Bird's forward direction
+                rbStone.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+
+                // Optionally, add a small upward force to give the stone an arc-like motion
+                rbStone.AddForce(Vector3.up * 2f, ForceMode.Impulse);
+            }
+            else
+            {
+                Debug.LogWarning("The stone does not have a Rigidbody attached!");
+            }
+
+            // Increment the number of stones thrown
+            stonesThrown++;
+
+            // Optionally, destroy the stone after 5 seconds to clean up the scene
+            Destroy(stone, 5f);  // Destroy the stone after 5 seconds
         }
-        else
-        {
-            Debug.LogWarning("The stone does not have a Rigidbody attached!");
-        }
-
-        // Increment the number of stones thrown
-        stonesThrown++;
-
-        // Optionally, destroy the stone after 5 seconds to clean up the scene
-        Destroy(stone, 5f);  // Destroy the stone after 5 seconds
     }
 
     // Coroutine to handle reload time

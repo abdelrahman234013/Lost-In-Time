@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyPickUPS1 : MonoBehaviour
 {
-    public int keyValue;
+    // public int keyValue;
     public AudioClip keySound;
     // Start is called before the first frame update
     void Start()
@@ -19,13 +19,13 @@ public class KeyPickUPS1 : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other){
         if(other.tag=="Player"){
-            FindObjectOfType<PlayerStatsIceS1>().CollectedKey(keyValue);
+            FindObjectOfType<PlayerStatsIceS1>().CollectedKey();
            
             //AudioManager.instance.PlaySingle(coinSound);
            // AudioManager.instance.RandomizeSfx(shardSound);
             Destroy(this.gameObject);
             Debug.Log("key Collected!");
-            Debug.Log("Key Value: " + keyValue);
+            // Debug.Log("Key Value: " + keyValue);
 
         }
     }
