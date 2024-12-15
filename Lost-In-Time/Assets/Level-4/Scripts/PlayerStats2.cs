@@ -16,6 +16,7 @@ public class PlayerStats2 : MonoBehaviour
     public bool hasCard = false;
     public bool hasCapsule = false;
     private int coinsCollected = 0;
+     public Animator animator;
     // public TextMeshProUGUI ScoreUI;
     // public Image healthBar;
 
@@ -24,6 +25,7 @@ public class PlayerStats2 : MonoBehaviour
     void Start()
     {
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -51,6 +53,7 @@ public class PlayerStats2 : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
+
         if(this.isImmune == false){
             this.health = this.health - damage;
             if(this.health < 0){
@@ -69,13 +72,13 @@ public class PlayerStats2 : MonoBehaviour
             Debug.Log("Player Health: " + this.health.ToString());
             // Debug.Log("Player Lives: " + this.lives.ToString());
         }
-
         PlayHitReaction();
         // healthBar.fillAmount = this.health/3f;
         
     }
 
     void PlayHitReaction(){
+        // animator.SetBool("isHurt", isImmune);
         this.isImmune = true;
         this.immuneTime = 0f;
     }
