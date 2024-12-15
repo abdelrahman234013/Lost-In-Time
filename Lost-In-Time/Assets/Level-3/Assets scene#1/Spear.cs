@@ -17,4 +17,10 @@ public class Spear : MonoBehaviour
  public void OnCollisionEnter2D (Collision2D collision){
 Destroy(gameObject);
 }
+void OnTriggerEnter2D(Collider2D other){
+    if (other.tag=="Enemy"){
+        Destroy(other.gameObject);
+        Destroy(this.gameObject);
+    }
+}
 }
