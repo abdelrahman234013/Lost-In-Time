@@ -6,16 +6,11 @@ using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
-<<<<<<< Updated upstream
     public int health = 3; // Health for the current heart (this is per heart)
     public int maxHealth = 3; // Maximum health per heart
     public int lives = 3; // Total number of hearts (lives)
     private int maxLives = 3; // Number of hearts the player can have
 
-=======
-    public int health = 3;
-    public int lives = 3;
->>>>>>> Stashed changes
     public float flickerTime = 0f;
     public float flickerDuration = 0.1f;
     private SpriteRenderer spriteRenderer;
