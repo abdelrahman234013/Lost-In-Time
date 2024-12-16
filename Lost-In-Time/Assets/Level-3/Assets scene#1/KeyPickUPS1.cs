@@ -19,7 +19,7 @@ public class KeyPickUPS1 : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other){
         if(other.tag=="Player"){
-            FindObjectOfType<PlayerStatsIceS1>().CollectedKey();
+            FindObjectOfType<PlayerStatsIceS1>().CollectedKey(1);
            
             //AudioManager.instance.PlaySingle(coinSound);
            // AudioManager.instance.RandomizeSfx(shardSound);

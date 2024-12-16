@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level-4/Scenes/Scene 3  Final Fight.unity
     guid: d8cebe96a6f972f498ff9e74ddf7e9bd
+  - enabled: 1
+    path: Assets/Level-1/Scenes/puzzle.unity
+    guid: 9607bcbc0d4cdbb48acd9505f9c72946
   m_configObjects: {}
