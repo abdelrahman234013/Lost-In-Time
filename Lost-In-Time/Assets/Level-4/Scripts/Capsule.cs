@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Capsule : MonoBehaviour
 {
-    public AudioClip audio;
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -20,7 +20,6 @@ public class Capsule : MonoBehaviour
         if (other.tag == "Player") {
             FindObjectOfType<PlayerStats>().hasCapsule = true;
             Destroy(this.gameObject);
-              AudioManager2.instance.PlaySingle(audio);
         }
     }
 }

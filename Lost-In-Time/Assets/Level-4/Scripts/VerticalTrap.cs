@@ -38,7 +38,7 @@ public class VerticalTrap : MonoBehaviour
             PlayerStats playerStats = collision.GetComponent<PlayerStats>();
             if (playerStats != null)
             {
-                playerStats.TakeDamage(3); // Deal damage to the player
+                playerStats.TakeDamage(6); // Deal damage to the player
             }
         }
     }
