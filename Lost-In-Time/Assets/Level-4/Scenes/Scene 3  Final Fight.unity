@@ -111326,6 +111326,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8930712286328530975, guid: ee070c4bd4e1bdc4cbb771ab93a87cb7, type: 3}
   m_PrefabInstance: {fileID: 6056866575928622427}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1480266850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1480266852}
+  - component: {fileID: 1480266851}
+  m_Layer: 0
+  m_Name: Video Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!328 &1480266851
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480266850}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: 518441f508988094d9b56892aae12965, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 152135418}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 1
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
+  m_Url: 
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!4 &1480266852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480266850}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -108.75328, y: -45.267925, z: 91.02214}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1501598532 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6062347325030500277, guid: 0495f24d2ec6bd24ea35493779649f0a, type: 3}
@@ -116218,5 +116283,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Final Key
       objectReference: {fileID: 0}
+    - target: {fileID: 8848412637751307820, guid: 82a08cfdb17458b439d7a799ad97241b, type: 3}
+      propertyPath: videoPlayer
+      value: 
+      objectReference: {fileID: 1480266851}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82a08cfdb17458b439d7a799ad97241b, type: 3}
