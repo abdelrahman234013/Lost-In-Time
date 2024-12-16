@@ -13,8 +13,8 @@ public class GameOver : MonoBehaviour
     // Method to retry the current game by reloading the active scene
     public void RetryGame() {
         // Get the current active scene and reload it
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadSceneAsync(currentScene.name);
+        //Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadSceneAsync(0);
     }
 }
 

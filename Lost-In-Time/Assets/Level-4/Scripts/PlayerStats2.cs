@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats2 : MonoBehaviour
 {
@@ -61,8 +62,9 @@ public class PlayerStats2 : MonoBehaviour
                 this.health = 3;
                 this.lives--;
             } else if(this.lives == 0 && this.health == 0){
-                FindObjectOfType<LevelManagerScene2>().GameOver();
-                Destroy(this.gameObject);
+                SceneManager.LoadScene("GameOver");
+                //FindObjectOfType<LevelManagerScene2>().GameOver();
+                //Destroy(this.gameObject);
 
             }
 

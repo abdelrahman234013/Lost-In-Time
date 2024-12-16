@@ -68,8 +68,9 @@ public class HealthScript : MonoBehaviour
             }
             else
             {
-                RestartButton.SetActive(true);
-                Die(); // If last life is lost, player dies and shows game over panel
+                SceneManager.LoadScene("GameOver");
+                //RestartButton.SetActive(true);
+                //Die(); // If last life is lost, player dies and shows game over panel
             }
         }
     }
