@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerStatsIceS1 : MonoBehaviour
 {
@@ -87,6 +89,7 @@ public class PlayerStatsIceS1 : MonoBehaviour
             }
             else if (this.lives == 0 && this.health == 0)
             {
+                SceneManager.LoadScene("GameOver");
                 //TriggerDeathAnimation();
             }
 
