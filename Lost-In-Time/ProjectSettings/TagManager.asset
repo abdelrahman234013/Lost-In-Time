@@ -50,7 +50,7 @@ TagManager:
   - Check point
   - Fish
   - potion
-  - 
+  - Npc
   - 
   - 
   m_SortingLayers:
@@ -170,4 +170,7 @@ TagManager:
     locked: 0
   - name: potion
     uniqueID: 1920331553
+    locked: 0
+  - name: Npc
+    uniqueID: 3245658095
     locked: 0
