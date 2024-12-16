@@ -15,7 +15,7 @@ public class UnderwaterArea : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Start the damage coroutine when the player enters
-            damageCoroutine = StartCoroutine(DamagePlayer(other.GetComponent<Health>()));
+            damageCoroutine = StartCoroutine(DamagePlayer(other.GetComponent<HealthScript>()));
         }
     }
 
@@ -32,7 +32,7 @@ public class UnderwaterArea : MonoBehaviour
         }
     }
 
-    private IEnumerator DamagePlayer(Health playerHealth)
+    private IEnumerator DamagePlayer(HealthScript playerHealth)
     {
         // Wait for the initial delay before starting damage
         yield return new WaitForSeconds(initialDelay);
@@ -40,7 +40,7 @@ public class UnderwaterArea : MonoBehaviour
         while (true)
         {
             // Apply damage to the player
-            FindObjectOfType<PlayerStats>().TakeDamage(damageAmount);
+            FindObjectOfType<HealthScript>().TakeDamage(damageAmount);
 
             // Wait for the next damage interval
             yield return new WaitForSeconds(damageInterval);

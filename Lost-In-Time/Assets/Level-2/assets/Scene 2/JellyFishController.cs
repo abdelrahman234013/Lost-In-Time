@@ -69,7 +69,14 @@ public class JellyFishController : MonoBehaviour
         {
             // Stop moving up and immediately start moving down
             movingUp = false;
-            FindObjectOfType<PlayerStats>().TakeDamage(damage);
+            HealthScript playerHealth = collision.gameObject.GetComponent<HealthScript>();
+            if (playerHealth != null)
+            {
+            Debug.Log("Hit JellyFish");
+            playerHealth.TakeDamage(damage);
+        }
         }
     }
 }
+
+
