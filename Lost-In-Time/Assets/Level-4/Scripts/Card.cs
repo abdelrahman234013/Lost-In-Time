@@ -1,24 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject portal;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player") {
+        if (other.CompareTag("Player"))
+        {
+            
             FindObjectOfType<PlayerStats>().hasCard = true;
+
+            
+            if (portal != null)
+            {
+                Renderer portalRenderer = portal.GetComponent<Renderer>();
+                if (portalRenderer != null)
+                {
+                    
+                    portal.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning("Portal does not have a Renderer component!");
+                }
+            }
+            else
+            {
+                Debug.LogError("Portal reference is missing! Assign the portal GameObject in the Inspector.");
+            }
+
+            
             Destroy(this.gameObject);
         }
     }
