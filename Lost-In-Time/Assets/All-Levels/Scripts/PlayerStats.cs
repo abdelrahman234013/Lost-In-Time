@@ -22,17 +22,13 @@ public class PlayerStats : MonoBehaviour
     private int coinsCollected = 0;
     private Animator animator;
 
-    public TextMeshProUGUI ScoreUI;  // Score UI to show collected coins
-    public Image healthbar; // Health bar Image reference
-    public Image[] heartImages; // Array of heart images for lives (drag all heart images in the inspector)
-
+    //public TextMeshProUGUI ScoreUI;  // Score UI to show collected coins
     void Start()
     {
         animator = this.gameObject.GetComponent<Animator>();
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
 
         // Initialize heart images based on the current lives
-        UpdateHearts();
     }
 
     void Update()
@@ -48,7 +44,7 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
-        ScoreUI.text = "" + coinsCollected;
+        //ScoreUI.text = "" + coinsCollected;
     }
 
     void SpirteFlicker()
@@ -75,7 +71,6 @@ public class PlayerStats : MonoBehaviour
             if (this.health < 0) this.health = 0;
 
             // Update health bar based on current health
-            healthbar.fillAmount = (float)health / maxHealth;  // Divide by maxHealth to dynamically adjust health bar
 
             // Check if health in current heart is 0
             if (this.health == 0 && this.lives > 0)
@@ -85,7 +80,6 @@ public class PlayerStats : MonoBehaviour
                 health = maxHealth;  // Reset health for the next heart
 
                 // Update hearts display
-                UpdateHearts();
 
                 // Respawn if there are remaining lives
                 if (this.lives > 0)
@@ -138,19 +132,5 @@ public class PlayerStats : MonoBehaviour
     }
 
     // Update hearts display based on the current lives
-    private void UpdateHearts()
-    {
-        for (int i = 0; i < maxLives; i++)
-        {
-            // If the player has more than i lives, set the heart to active
-            if (i < lives)
-            {
-                heartImages[i].enabled = true;  // Show heart
-            }
-            else
-            {
-                heartImages[i].enabled = false; // Hide heart
-            }
-        }
-    }
+
 }

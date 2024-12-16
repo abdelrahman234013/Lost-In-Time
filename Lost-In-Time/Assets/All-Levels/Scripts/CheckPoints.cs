@@ -12,7 +12,7 @@ public class CheckPoints : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Set the checkpoint position to the player's position
-            FindObjectOfType<L3RespawnPlayer>().SetCheckpoint(transform.position);
+            //FindObjectOfType<L3RespawnPlayer>().SetCheckpoint(transform.position);
         }
     }
 }
