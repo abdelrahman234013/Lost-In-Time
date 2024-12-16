@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Level-1/Scenes/MainMenu.unity
+    guid: 01f6b7c207768ab4eb2000dc31338566
   - enabled: 1
     path: Assets/Level-1/Scenes/scene 1.unity
     guid: 5fbb4ae8b4f81994fae7eadb3f822716
@@ -38,9 +41,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level-4/Scenes/Lab-Scene.unity
     guid: 489c8c6bc014f1445a1343a578254b11
-  - enabled: 1
+  - enabled: 0
     path: Assets/Level-4/Scenes/New Scene.unity
     guid: 797dfdcd5044ab04499cc666bab42c51
+  - enabled: 1
+    path: Assets/Level-4/Scenes/Scene 2.unity
+    guid: 2fbb1a9fbd2e02546a704c91d3111ee7
   - enabled: 1
     path: Assets/Level-4/Scenes/Scene 3  Final Fight.unity
     guid: d8cebe96a6f972f498ff9e74ddf7e9bd
