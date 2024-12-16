@@ -13,7 +13,7 @@ public class CharcterScript : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask whatIsGround;
-    public GameObject RestartButton;
+    
 
     public int stonesCollected = 0;
     public Text stonesText;
@@ -23,16 +23,6 @@ public class CharcterScript : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         UpdateStoneCountUI();
-        if (RestartButton != null){
-            RestartButton.SetActive(false);
-        }
-    }
-
-    public GameObject getButton(){
-        if (RestartButton != null){
-            return RestartButton;
-        }
-        return null;
     }
 
     void FixedUpdate(){

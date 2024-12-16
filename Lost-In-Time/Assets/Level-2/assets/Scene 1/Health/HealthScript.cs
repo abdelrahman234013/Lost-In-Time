@@ -27,8 +27,9 @@ public class HealthScript : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip hurtSound;
 
+    public Transform CurrentCheckpoint;
     private PlayerRespawn playerRespawn;
-    private CharcterScript player;
+    public GameObject RestartButton;
 
     // Reference to the GameManager (or Game script where the GameOver method is)
     private Game gameManager;
@@ -39,9 +40,10 @@ public class HealthScript : MonoBehaviour
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
         spriteRend = GetComponent<SpriteRenderer>();
-        player = GetComponent<CharcterScript>();
-        playerRespawn = GetComponent<PlayerRespawn>(); // Get the PlayerRespawn component
         gameManager = FindObjectOfType<Game>(); // Find the GameManager/Game script in the scene
+        if (RestartButton != null){
+            RestartButton.SetActive(false);
+        }
     }
 
     private void Update(){
@@ -49,7 +51,6 @@ public class HealthScript : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("I got damaged");
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, startingHealth);
 
         if (currentHealth > 0)
@@ -67,6 +68,7 @@ public class HealthScript : MonoBehaviour
             }
             else
             {
+                RestartButton.SetActive(true);
                 Die(); // If last life is lost, player dies and shows game over panel
             }
         }
@@ -75,8 +77,7 @@ public class HealthScript : MonoBehaviour
     private void Die()
     {
         remainingLives = 0;
-        anim.SetTrigger("die"); // Trigger death animation
-        player.enabled = false; // Disable player control
+        anim.SetTrigger("Death"); // Trigger death animation
 
         // Play death sound, if any
         if (deathSound)
@@ -91,10 +92,6 @@ public class HealthScript : MonoBehaviour
         }
 
         // Optionally, activate buttons or other UI
-        if (player.getButton() != null)
-        {
-            player.getButton().SetActive(true);
-        }
     }
 
     public void AddHealth(float value)
@@ -104,14 +101,13 @@ public class HealthScript : MonoBehaviour
 
     public void Respawn()
     {
-        ManagerScript LevelMng = FindObjectOfType<ManagerScript>();
-        LevelMng.RespawnPlayer();
+        transform.position = CurrentCheckpoint.position;
 
         // Reset health to full
         currentHealth = startingHealth;
 
         // Reset animations
-        anim.ResetTrigger("die");
+        anim.ResetTrigger("death");
         anim.Play("Idle"); // Play idle animation when respawned
 
         // Re-enable components (e.g., movement, physics)

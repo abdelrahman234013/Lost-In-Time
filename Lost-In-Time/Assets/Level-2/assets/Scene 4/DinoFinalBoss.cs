@@ -31,14 +31,12 @@ public class DinoFinalBoss : MonoBehaviour
     public GameObject[] spikes;
     public GameObject JumpPad1;
     public GameObject JumpPad2;
-    public GameObject RewardKey;
 
     void Start()
     {
         transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
         foreach (GameObject spike in spikes){ spike.SetActive(false); }
         JumpPad1.SetActive(false); JumpPad2.SetActive(false);
-        RewardKey.SetActive(false);
     }
 
     public void StartBossFight()
@@ -60,7 +58,7 @@ public class DinoFinalBoss : MonoBehaviour
     yield return new WaitForSeconds(1);
 
     WallRight.GetComponent<Collider2D>().isTrigger = false;
-    WallLeft.GetComponent<Collider2D>().isTrigger = false;
+    WallLeft.GetComponent<Collider2D>().isTrigger = true;
 
     }
 
@@ -198,7 +196,6 @@ void FireBullet()
 
     IEnumerator DisappearAfterDeath()
     {   
-        RewardKey.SetActive(true);
         foreach (GameObject spike in spikes){ spike.SetActive(false); }
         JumpPad1.SetActive(true); JumpPad2.SetActive(true);
         WallRight.GetComponent<Collider2D>().isTrigger = true;
